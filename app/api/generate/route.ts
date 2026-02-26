@@ -9,7 +9,8 @@ export async function POST(req: Request) {
       process.env.GEMINI_API_KEY_1,
       process.env.GEMINI_API_KEY_2,
       process.env.GEMINI_API_KEY_3,
-      process.env.NEXT_PUBLIC_GEMINI_API_KEY,
+      process.env.GEMINI_API_KEY_4,
+      process.env.GEMINI_API_KEY_5,
     ].filter(key => key && typeof key === 'string' && key.length > 20 && !key.includes("your_api_key")) as string[];
 
     if (apiKeys.length === 0) {
