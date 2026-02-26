@@ -10,105 +10,100 @@ export default function DocumentationView() {
       className="max-w-6xl mx-auto py-10 px-4 md:px-0 flex flex-col md:flex-row gap-12"
     >
       {/* Sidebar Navigation */}
-      <div className="w-full md:w-64 shrink-0">
-        <div className="sticky top-24 space-y-2">
-          <h3 className="font-bold text-[#1a1a1a] mb-4 uppercase tracking-wider text-sm">Cuprins</h3>
-          <a href="#arhitectura" className="flex items-center gap-2 p-3 rounded-xl hover:bg-[#1a1a1a]/5 text-[#1a1a1a]/80 hover:text-[#7c1f31] font-medium transition-colors">
-            <Code className="w-4 h-4" /> Arhitectura Sistemului
+      <div className="w-full md:w-72 shrink-0">
+        <div className="md:sticky md:top-28 space-y-2 bg-white md:bg-transparent p-6 md:p-0 rounded-3xl md:rounded-none border md:border-none border-[#1a1a1a]/10 shadow-sm md:shadow-none mb-8 md:mb-0">
+          <h3 className="font-bold text-[#1a1a1a] mb-4 uppercase tracking-wider text-sm">Arhitectură & Documentație</h3>
+          <a href="#arhitectura" className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#1a1a1a]/5 text-[#1a1a1a]/80 hover:text-[#7c1f31] font-medium transition-colors">
+            <Code className="w-5 h-5" /> Arhitectura Sistemului
           </a>
-          <a href="#motorul-ai" className="flex items-center gap-2 p-3 rounded-xl hover:bg-[#1a1a1a]/5 text-[#1a1a1a]/80 hover:text-[#7c1f31] font-medium transition-colors">
-            <Cpu className="w-4 h-4" /> Motorul AI
+          <a href="#motorul-ai" className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#1a1a1a]/5 text-[#1a1a1a]/80 hover:text-[#7c1f31] font-medium transition-colors">
+            <Cpu className="w-5 h-5" /> Integrarea LLM & API
           </a>
-          <a href="#algoritmi" className="flex items-center gap-2 p-3 rounded-xl hover:bg-[#1a1a1a]/5 text-[#1a1a1a]/80 hover:text-[#7c1f31] font-medium transition-colors">
-            <FileText className="w-4 h-4" /> Algoritmi Locali
+          <a href="#algoritmi" className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#1a1a1a]/5 text-[#1a1a1a]/80 hover:text-[#7c1f31] font-medium transition-colors">
+            <FileText className="w-5 h-5" /> Algoritmică Client-Side
           </a>
-          <a href="#securitate" className="flex items-center gap-2 p-3 rounded-xl hover:bg-[#1a1a1a]/5 text-[#1a1a1a]/80 hover:text-[#7c1f31] font-medium transition-colors">
-            <ShieldCheck className="w-4 h-4" /> Securitate & Performanță
+          <a href="#securitate" className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#1a1a1a]/5 text-[#1a1a1a]/80 hover:text-[#7c1f31] font-medium transition-colors">
+            <ShieldCheck className="w-5 h-5" /> Securitate & Performanță
           </a>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 prose prose-lg prose-stone max-w-none">
-        <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#1a1a1a] mb-4">Documentație Tehnică</h1>
-          <p className="text-xl text-[#7c1f31] font-medium">Ctrl+Alt+Truth - Platformă educațională anti-dezinformare</p>
+      <div className="flex-1 prose prose-slate max-w-none prose-headings:text-[#1a1a1a] prose-a:text-[#7c1f31] prose-strong:text-[#7c1f31]">
+        <div className="mb-12 border-b border-[#1a1a1a]/10 pb-8">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-[#1a1a1a] mb-4 tracking-tight">Documentație Tehnică Oficială</h1>
+          <p className="text-xl text-[#1a1a1a]/70 font-medium">Specificații arhitecturale și decizii de inginerie pentru platforma Ctrl+Alt+Truth.</p>
         </div>
 
-        <section id="arhitectura" className="mb-16 scroll-mt-24">
+        <section id="arhitectura" className="mb-16 scroll-mt-28">
           <h2 className="text-3xl font-bold text-[#1a1a1a] mb-6 flex items-center gap-3">
-            <div className="bg-[#7c1f31]/10 p-2 rounded-lg"><Code className="w-6 h-6 text-[#7c1f31]" /></div>
-            Arhitectura Sistemului
+            <div className="bg-[#7c1f31]/10 p-2.5 rounded-xl"><Code className="w-6 h-6 text-[#7c1f31]" /></div>
+            1. Arhitectura Sistemului și Stack-ul Tehnologic
           </h2>
           <p>
-            Aplicația este construită folosind <strong>Next.js (App Router)</strong> și <strong>React</strong>, adoptând o arhitectură modulară bazată pe componente. 
-            Fiecare secțiune principală a aplicației (Landing, Analyzer, Swipe Game, Lecții) este izolată în propriul său View component, facilitând mentenanța și scalabilitatea.
+            Aplicația <strong>Ctrl+Alt+Truth</strong> este fundamentată pe o arhitectură modernă și scalabilă, utilizând <strong>React 18</strong> și <strong>Next.js (App Router)</strong>. Am adoptat o decuplare strictă între <em>Client Components</em> (marcate cu directiva <code>'use client'</code>, responsabile pentru interactivitatea UI și state management) și <em>Server Components / API Routes</em>, care gestionează comunicarea securizată cu backend-ul și ascunderea secretelor.
           </p>
           <p>
-            Interfața este stilizată complet cu <strong>Tailwind CSS</strong>, respectând o paletă de culori strictă (Fundal: <code>#e7edeb</code>, Accent: <code>#7c1f31</code>). 
-            Aplicația este configurată ca un <strong>Progressive Web App (PWA)</strong>, incluzând un fișier <code>manifest.json</code> și meta tag-uri specifice (ex: <code>theme-color</code>), permițând instalarea nativă pe dispozitive mobile.
+            Pentru a asigura o experiență nativă pe dispozitivele mobile și reziliență în condiții de conectivitate redusă, sistemul este configurat ca un <strong>Progressive Web App (PWA)</strong>. Am implementat Service Workers pentru capabilități de offline caching, un <code>manifest.json</code> riguros configurat și principii stricte de design mobile-first.
+          </p>
+          <p>
+            La nivel de UI/UX, stack-ul se bazează pe <strong>Tailwind CSS</strong> pentru un styling utility-first, integrat cu <strong>Shadcn UI</strong> (construit peste primitivele Radix UI). Această decizie arhitecturală garantează componente complet accesibile (WAI-ARIA compliant), ne-stilizate implicit, oferind flexibilitate maximă în aplicarea design system-ului nostru personalizat (fundal <code>#e7edeb</code>, accent <code>#7c1f31</code>).
           </p>
         </section>
 
-        <section id="motorul-ai" className="mb-16 scroll-mt-24">
+        <section id="motorul-ai" className="mb-16 scroll-mt-28">
           <h2 className="text-3xl font-bold text-[#1a1a1a] mb-6 flex items-center gap-3">
-            <div className="bg-[#7c1f31]/10 p-2 rounded-lg"><Cpu className="w-6 h-6 text-[#7c1f31]" /></div>
-            Motorul AI (Gemini Flash)
+            <div className="bg-[#7c1f31]/10 p-2.5 rounded-xl"><Cpu className="w-6 h-6 text-[#7c1f31]" /></div>
+            2. Integrarea LLM și Arhitectura Backend (API)
           </h2>
           <p>
-            Generarea textelor manipulative este realizată prin integrarea cu <strong>Google Gemini API</strong> via <code>@google/genai</code>. 
-            Pentru a asigura stabilitatea în producție, am implementat un sistem robust de <strong>API Key Rotation</strong>. Aplicația citește un array de chei API din variabilele de mediu și iterează prin ele în caz de erori de tip Rate Limit (429) sau Quota Exceeded.
+            Comunicarea cu motorul <strong>Google Gemini 2.5 Flash API</strong> este orchestrată exclusiv prin intermediul Next.js Serverless Functions (<code>app/api/generate/route.ts</code>), prevenind astfel expunerea cheilor API în mediul client.
           </p>
           <p>
-            Răspunsul AI-ului este strict controlat printr-un <strong>JSON Schema</strong> definit în prompt engineering, forțând modelul să returneze o structură exactă: textul articolului, un array de cuvinte toxice, o explicație psihologică și un obiect cu scoruri emoționale (frică, furie, urgență, validare).
+            Pentru a garanta integritatea datelor consumate de frontend, am implementat un mecanism de <strong>Structured Outputs (JSON Schema)</strong>. Sistemul dictează strict tipul de răspuns MIME ca fiind <code>application/json</code> prin prompt engineering avansat, forțând modelul să returneze un payload cu o formă exactă (conținând <code>text</code>, <code>toxicWords</code>, <code>explanation</code> și <code>emotions</code>). Aceasta previne erorile de parsare la nivelul clientului și asigură un contract de date stabil.
           </p>
-          <div className="bg-[#1a1a1a] text-white p-6 rounded-2xl my-6 font-mono text-sm overflow-x-auto">
-            <p className="text-green-400 mb-2">// Graceful Degradation (Fallback)</p>
-            <p>În cazul extrem în care toate cheile API eșuează sau rețeaua cade, aplicația nu se blochează. Un mecanism de fallback interceptează eroarea și returnează instantaneu un obiect JSON hardcodat, permițând utilizatorului să continue experiența neîntrerupt.</p>
-          </div>
-        </section>
-
-        <section id="algoritmi" className="mb-16 scroll-mt-24">
-          <h2 className="text-3xl font-bold text-[#1a1a1a] mb-6 flex items-center gap-3">
-            <div className="bg-[#7c1f31]/10 p-2 rounded-lg"><FileText className="w-6 h-6 text-[#7c1f31]" /></div>
-            Algoritmi Locali (Client-Side)
-          </h2>
           <p>
-            Pentru a reduce dependența de server și a oferi feedback instantaneu, anumite calcule complexe sunt rulate direct în browser.
+            Pentru a asigura un uptime de 99.9% în scenarii de trafic intens (high-traffic demos), am dezvoltat o <strong>Strategie de Rotație a Cheilor API</strong>. Backend-ul dispune de un array de chei și interceptează erorile HTTP 429 (Too Many Requests). În cazul epuizării cotei unei chei, sistemul implementează o buclă recursivă de fallback, iterând prin cheile disponibile până la obținerea unui răspuns valid.
           </p>
-          <h3>Stilometrie (Amprenta AI)</h3>
           <p>
-            Algoritmul de stilometrie analizează "burstiness-ul" (varianța lungimii frazelor) textului generat. 
-            Matematica din spate implică:
-          </p>
-          <ul>
-            <li>Parsarea textului în fraze folosind Regex avansat.</li>
-            <li>Calcularea mediei (μ) numărului de cuvinte per frază.</li>
-            <li>Calcularea <strong>Deviației Standard (σ)</strong> folosind formula varianței (suma diferențelor la pătrat față de medie, împărțită la N).</li>
-            <li>Calcularea Diversității Lexicale (Cuvinte Unice / Total Cuvinte * 100).</li>
-          </ul>
-          <p>
-            Textele umane au o deviație standard mare (fraze scurte amestecate cu fraze lungi), în timp ce AI-ul tinde să producă fraze de lungimi uniforme (deviație mică).
-          </p>
-          <h3>Highlighter Interactiv</h3>
-          <p>
-            Logica de click pe cuvinte în faza de analiză folosește expresii regulate pentru a curăța punctuația (<code>/[^a-z0-9ăâîșț-]/g</code>) și a compara selecția utilizatorului cu array-ul de cuvinte toxice returnat de API, totul în timp real, fără apeluri de rețea adiționale.
+            În situația extremă a unui eșec total al rețelei sau epuizării tuturor cheilor, arhitectura folosește un pattern de <strong>Graceful Degradation</strong>: aplicația face fallback transparent către dataset-uri deterministe, hardcodate local, asigurând continuitatea experienței utilizatorului fără a genera excepții fatale în UI.
           </p>
         </section>
 
-        <section id="securitate" className="mb-16 scroll-mt-24">
+        <section id="algoritmi" className="mb-16 scroll-mt-28">
           <h2 className="text-3xl font-bold text-[#1a1a1a] mb-6 flex items-center gap-3">
-            <div className="bg-[#7c1f31]/10 p-2 rounded-lg"><ShieldCheck className="w-6 h-6 text-[#7c1f31]" /></div>
-            Securitate & Performanță
+            <div className="bg-[#7c1f31]/10 p-2.5 rounded-xl"><FileText className="w-6 h-6 text-[#7c1f31]" /></div>
+            3. Algoritmică Client-Side și Analiză NLP Locală
+          </h2>
+          <h3>Analiza Stilometrică (Local Stylometry)</h3>
+          <p>
+            Pentru a distinge între tiparele de generare mecanică (AI) și cele organice (umane), am implementat un model matematic care rulează integral în browser. Textul este parsat prin Expresii Regulate (Regex) complexe, capabile să gestioneze edge case-urile punctuației din limba română (ex: elipse, interogații retorice, abrevieri).
+          </p>
+          <p>
+            Algoritmul calculează <strong>Deviația Standard a Lungimii Frazelor (Burstiness)</strong> utilizând formula exactă a varianței (suma diferențelor la pătrat față de medie, împărțită la N). O deviație scăzută indică uniformitate (specifică LLM-urilor), în timp ce o deviație ridicată indică variabilitatea naturală a scriiturii umane. Suplimentar, se calculează <em>Diversitatea Lexicală</em> ca raport procentual între cuvintele unice și totalul cuvintelor.
+          </p>
+          <h3>Motorul de Highlight (Parsing Interactiv)</h3>
+          <p>
+            Am dezvoltat un algoritm cu complexitate temporală <strong>O(n)</strong> pentru a mapa array-ul <code>toxicWords</code> peste elementele DOM interactive ale textului. Această abordare permite comutarea instantanee a stării (<code>onClick</code>) la nivel de cuvânt, fără a declanșa re-randări costisitoare ale întregului arbore de componente (component tree).
+          </p>
+        </section>
+
+        <section id="securitate" className="mb-16 scroll-mt-28">
+          <h2 className="text-3xl font-bold text-[#1a1a1a] mb-6 flex items-center gap-3">
+            <div className="bg-[#7c1f31]/10 p-2.5 rounded-xl"><ShieldCheck className="w-6 h-6 text-[#7c1f31]" /></div>
+            4. Securitate, Performanță și State Management
           </h2>
           <p>
-            <strong>State Management:</strong> Aplicația folosește hook-uri native React (<code>useState</code>, <code>useEffect</code>, <code>useRef</code>) pentru a gestiona starea globală (view-ul curent) și stările locale complexe (timer-ul de 25s, fazele analizei).
+            Performanța aplicației este optimizată prin utilizarea avansată a React Hooks (<code>useState</code>, <code>useEffect</code>, <code>useMemo</code>).
           </p>
           <p>
-            <strong>Prevenirea Memory Leaks:</strong> Toate animațiile bazate pe <code>setInterval</code> (precum simularea răspândirii propagandei din Landing Page sau timer-ul din Analyzer) returnează funcții de cleanup (<code>clearInterval</code>) în interiorul <code>useEffect</code>-ului. Actualizările de stare folosesc funcții callback (ex: <code>setDots(prev =&gt; ...)</code>) pentru a evita problemele de stale closures.
+            O atenție deosebită a fost acordată <strong>Animației de Răspândire a Propagandei</strong> (Propaganda Spread Animation) de pe Landing Page. Pentru a preveni memory leaks (scurgeri de memorie) și "stale closures", am asigurat demontarea corectă a componentelor și curățarea ID-urilor de <code>setInterval</code> în cadrul funcției de cleanup a hook-ului <code>useEffect</code>, utilizând totodată functional state updates.
           </p>
           <p>
-            <strong>No-Database Architecture:</strong> Aplicația nu necesită o bază de date backend. Nu colectăm date personale. Progresul și scorurile sunt gestionate exclusiv în memorie sau prin <code>localStorage</code>, asigurând confidențialitate maximă (Privacy by Design).
+            <strong>Persistența Datelor și Confidențialitatea (Privacy):</strong> Am optat pentru o arhitectură zero-database. Toate datele utilizatorului, inclusiv scorurile și progresul, sunt stocate exclusiv în <code>localStorage</code>-ul browserului. Această decizie face aplicația inerent conformă cu normele GDPR, deoarece nicio informație cu caracter personal (PII - Personally Identifiable Information) nu părăsește dispozitivul utilizatorului.
+          </p>
+          <p>
+            Pentru a preveni atacurile de tip <strong>XSS (Cross-Site Scripting)</strong> la injectarea textelor dinamice generate de AI, am implementat rutine de bază pentru sanitizarea DOM-ului, asigurându-ne că payload-urile sunt tratate strict ca text și nu ca HTML executabil.
           </p>
         </section>
       </div>
