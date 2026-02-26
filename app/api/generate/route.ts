@@ -1,0 +1,112 @@
+import { GoogleGenAI, Type } from '@google/genai';
+import { NextResponse } from 'next/server';
+
+export async function POST(req: Request) {
+  try {
+    const { topicTitle, topicDescription } = await req.json();
+
+    const apiKeys = [
+      process.env.GEMINI_API_KEY_1,
+      process.env.GEMINI_API_KEY_2,
+      process.env.GEMINI_API_KEY_3,
+      process.env.NEXT_PUBLIC_GEMINI_API_KEY,
+    ].filter(key => key && typeof key === 'string' && key.length > 20 && !key.includes("your_api_key")) as string[];
+
+    if (apiKeys.length === 0) {
+      return NextResponse.json({ error: "Nu a fost găsită nicio cheie API Gemini." }, { status: 500 });
+    }
+
+    let response;
+    let lastError;
+
+    for (const apiKey of apiKeys) {
+      try {
+        const ai = new GoogleGenAI({ apiKey });
+        
+        const prompt = `
+          Ești un expert în psihologia maselor și dezinformare.
+          Scrie un text manipulator de 70 de cuvinte despre subiectul: "${topicTitle}".
+          Context: ${topicDescription}
+          Extrage cuvintele toxice într-un array.
+          
+          NOUTATE: La câmpul 'explanation', nu oferi doar o explicație generală. Trebuie să explici specific CUM aceste cuvinte toxice influențează un public neinformat (ex: 'Cuvântul X scurtcircuitează gândirea rațională declanșând frica, determinând cititorul să accepte soluții extreme fără a cere dovezi').
+        `;
+
+        response = await ai.models.generateContent({
+          model: "gemini-3-flash-preview",
+          contents: prompt,
+          config: {
+            responseMimeType: "application/json",
+            responseSchema: {
+              type: Type.OBJECT,
+              properties: {
+                text: {
+                  type: Type.STRING,
+                  description: "Textul manipulator generat.",
+                },
+                toxicWords: {
+                  type: Type.ARRAY,
+                  items: {
+                    type: Type.STRING,
+                  },
+                  description: "Lista de cuvinte toxice sau manipulatoare din text (fără punctuație, litere mici).",
+                },
+                explanation: {
+                  type: Type.STRING,
+                  description: "Explicația tehnicilor de manipulare folosite.",
+                },
+                emotions: {
+                  type: Type.OBJECT,
+                  description: "Scoruri de la 0 la 100 pentru emoțiile declanșate de text.",
+                  properties: {
+                    fear: { type: Type.NUMBER },
+                    anger: { type: Type.NUMBER },
+                    urgency: { type: Type.NUMBER },
+                    validation: { type: Type.NUMBER }
+                  },
+                  required: ["fear", "anger", "urgency", "validation"]
+                }
+              },
+              required: ["text", "toxicWords", "explanation", "emotions"],
+            },
+          },
+        });
+        
+        break;
+      } catch (error: any) {
+        console.warn("API Key failed, trying next one...", error);
+        lastError = error;
+      }
+    }
+
+    if (!response) {
+      const FALLBACK_ARTICLES = [
+        {
+          text: "Inteligența artificială va distruge complet piața muncii într-un ritm catastrofal. Milioane de angajați nevinovați vor fi aruncați în stradă de corporații lacome care urmăresc doar profitul. Este o apocalipsă economică iminentă, iar guvernele incompetente refuză să ne protejeze de această amenințare existențială.",
+          toxicWords: ["distruge", "complet", "catastrofal", "nevinovați", "aruncați", "lacome", "apocalipsă", "iminentă", "incompetente", "amenințare", "existențială"],
+          explanation: "Textul folosește hiperbole ('apocalipsă', 'catastrofal') și cuvinte cu încărcătură emoțională negativă ('lacome', 'incompetente') pentru a declanșa frica și furia. Cuvântul 'catastrofal' scurtcircuitează gândirea rațională declanșând frica, determinând cititorul să accepte soluții extreme fără a cere dovezi.",
+          emotions: { fear: 90, anger: 85, urgency: 80, validation: 20 }
+        },
+        {
+          text: "Elita globalistă ascunde cu disperare adevărul șocant despre încălzirea globală. Această farsă monumentală este folosită pentru a ne fura libertățile fundamentale și a ne impune taxe aberante. Treziți-vă! Oamenii de știință corupți ne mint cu nerușinare în fiecare zi.",
+          toxicWords: ["elita", "globalistă", "disperare", "șocant", "farsă", "monumentală", "fura", "aberante", "treziți-vă", "corupți", "nerușinare"],
+          explanation: "Acest text folosește limbaj conspirativ ('elita globalistă', 'farsă monumentală') și apeluri la acțiune ('Treziți-vă!') pentru a crea un sentiment de urgență și indignare. Cuvântul 'șocant' scurtcircuitează gândirea rațională declanșând frica, determinând cititorul să accepte soluții extreme fără a cere dovezi.",
+          emotions: { fear: 75, anger: 95, urgency: 85, validation: 40 }
+        }
+      ];
+      console.warn("Using fallback article due to API failure:", lastError);
+      return NextResponse.json(FALLBACK_ARTICLES[Math.floor(Math.random() * FALLBACK_ARTICLES.length)]);
+    }
+
+    const jsonStr = response.text?.trim();
+    if (jsonStr) {
+      const data = JSON.parse(jsonStr);
+      return NextResponse.json(data);
+    } else {
+      throw new Error("Invalid response from Gemini");
+    }
+  } catch (error: any) {
+    console.error("Error in generate API:", error);
+    return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 });
+  }
+}

@@ -1,387 +1,179 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { AlertCircle, RefreshCcw, ShieldAlert, BookOpen, Car, Calendar, Shirt, Smartphone, Earth, Loader2 } from 'lucide-react';
-import { GoogleGenAI, Type } from '@google/genai';
+import { ShieldAlert, BookOpen, AlertTriangle, MessageSquareWarning, Fingerprint, Video, Filter, Search } from 'lucide-react';
 
-type AppState = 'select-topic' | 'analyzing' | 'results';
+import Navbar from '@/components/layout/Navbar';
+import LandingView from '@/components/views/LandingView';
+import AnalyzerView from '@/components/views/AnalyzerView';
+import SwipeGameView from '@/components/views/SwipeGameView';
+import LessonsView from '@/components/views/LessonsView';
 
-interface ArticleData {
-  text: string;
-  toxicWords: string[];
-  explanation: string;
-}
+import DocumentationView from '@/components/views/DocumentationView';
 
 const TOPICS = [
+  { id: 'ai-jobs', title: 'Inteligența Artificială ne fură joburile', icon: Fingerprint, description: 'Analizează un text despre impactul AI asupra pieței muncii.' },
+  { id: 'crypto', title: 'Bani rapizi și siguri din Crypto', icon: MessageSquareWarning, description: 'Descoperă cum sunt promovate schemele de îmbogățire rapidă.' },
+  { id: 'diets', title: 'Secretul din spatele dietelor minune', icon: AlertTriangle, description: 'Învață să recunoști manipularea în industria de wellness.' },
+  { id: 'climate', title: 'Adevărul ascuns despre încălzirea globală', icon: ShieldAlert, description: 'Analizează discursul negaționist și teoriile conspirației.' },
+  { id: 'tiktok', title: 'Cine controlează algoritmul TikTok?', icon: Video, description: 'Vezi cum este folosită frica legată de rețelele sociale.' },
+  { id: 'economy', title: 'Dezastrul iminent al economiei globale', icon: Filter, description: 'Recunoaște panica indusă artificial despre prăbușiri financiare.' }
+];
+
+const LESSONS = [
   {
-    id: 'ai-schools',
-    title: 'AI-ul în Școli',
-    icon: BookOpen,
-    description: 'Analizează un articol despre introducerea inteligenței artificiale în educație.',
-    data: {
-      text: "Introducerea nesăbuită a inteligenței artificiale în școli este un dezastru catastrofal care așteaptă să se întâmple. Elevii leneși o vor folosi inevitabil pentru a trișa, în timp ce administratorii incompetenți irosesc milioane pe tehnologii netestate.",
-      toxicWords: ["nesăbuită", "dezastru", "catastrofal", "leneși", "inevitabil", "incompetenți", "netestate"],
-      explanation: "Acest articol folosește un limbaj extrem de încărcat emoțional ('nesăbuită', 'dezastru catastrofal') pentru a incita la frică. De asemenea, se bazează pe atacuri la persoană ('elevii leneși', 'administratorii incompetenți') în loc să ofere argumente factuale despre provocările integrării AI."
-    }
+    id: 1,
+    level: "Nivelul 1",
+    title: "Anatomia Limbajului Polarizant",
+    icon: AlertTriangle,
+    content: (
+      <>
+        <p>Limbajul polarizant este principala armă a dezinformării moderne. Scopul său nu este să informeze, ci să împartă lumea în două tabere ireconciliabile: "Noi" (cei buni, victimele) și "Ei" (cei răi, asupritorii).</p>
+        <h3>Cum funcționează?</h3>
+        <ul>
+          <li><strong>Declanșarea fricii și furiei:</strong> Emoțiile negative puternice scurtcircuitează cortexul prefrontal (partea creierului responsabilă cu gândirea logică). Când ești furios, ești mult mai predispus să dai "Share" fără să verifici sursa.</li>
+          <li><strong>Adjective extreme:</strong> Cuvinte precum "catastrofal", "apocaliptic", "trădare", "șocant" sunt folosite pentru a hiperboliza evenimente banale.</li>
+          <li><strong>Sintaxa Clickbait:</strong> Titluri care ascund informația esențială ("Nu o să-ți vină să crezi ce a făcut...") pentru a exploata curiozitatea naturală a creierului (curiosity gap).</li>
+        </ul>
+        <h3>Exemplu practic</h3>
+        <p><em>Neutru:</em> "Guvernul a propus o nouă taxă de 1% pentru companiile mari."</p>
+        <p><em>Polarizant:</em> "JAF LA DRUMUL MARE! Guvernul ne FURĂ ultimii bani pentru a hrăni corporațiile străine! Ieșiți în stradă!"</p>
+        <p>Observă cum a doua variantă nu adaugă informații noi, ci doar emoție pură și un apel la acțiune nejustificat.</p>
+      </>
+    )
   },
   {
-    id: 'gas-cars',
-    title: 'Interzicerea Mașinilor pe Benzină',
-    icon: Car,
-    description: 'Examinează un text despre tranziția forțată la vehiculele electrice.',
-    data: {
-      text: "Forțarea tuturor să cumpere mașini electrice este un abuz tiranic al guvernului. Aceste cărucioare de golf supraevaluate vor distruge complet rețeaua electrică și vor lăsa familii nevinovate blocate în frigul înghețat.",
-      toxicWords: ["forțarea", "abuz", "tiranic", "cărucioare", "supraevaluate", "distruge", "complet", "nevinovate", "blocate", "înghețat"],
-      explanation: "Textul folosește eroarea pantei alunecoase ('vor distruge complet rețeaua') și apelează la milă/frică ('familii nevinovate blocate în frigul înghețat'). Cuvinte precum 'tiranic' și 'forțarea' sunt folosite pentru a încadra politica drept opresiune."
-    }
+    id: 2,
+    level: "Nivelul 2",
+    title: "Fabricarea Consensului & Ferma de Troli",
+    icon: MessageSquareWarning,
+    content: (
+      <>
+        <p>Creierul uman este programat evolutiv să urmeze mulțimea (social proof). Dacă vedem că 10.000 de oameni susțin o idee, subconștientul nostru tinde să o valideze, chiar dacă ideea este falsă. Această vulnerabilitate este exploatată masiv în mediul online.</p>
+        <h3>Tehnici de manipulare a consensului</h3>
+        <ul>
+          <li><strong>Astroturfing:</strong> Crearea iluziei unei mișcări "de la firul ierbii" (grassroots). O campanie finanțată de un grup de interese folosește mii de conturi false pentru a face să pară că cetățenii obișnuiți protestează spontan împotriva unei legi.</li>
+          <li><strong>Fermele de Troli și Boți:</strong> Rețele automatizate care dau like, share și comentează la comandă. Scopul lor este să "păcălească" algoritmul rețelei sociale să creadă că un subiect este viral, împingându-l astfel în feed-urile oamenilor reali.</li>
+          <li><strong>Efectul de Bandwagon:</strong> Oamenii reali încep să adopte opinia falsă doar pentru că pare a fi opinia majorității, consolidând astfel minciuna inițială.</li>
+        </ul>
+        <h3>Cum să te protejezi?</h3>
+        <p>Nu evalua veridicitatea unei informații pe baza numărului de aprecieri. Caută sursa primară. Dacă mii de comentarii folosesc exact aceleași fraze sau cuvinte cheie, este foarte probabil să asiști la un atac coordonat de boți.</p>
+      </>
+    )
   },
   {
-    id: '4-day-workweek',
-    title: 'Săptămâna de Lucru de 4 Zile',
-    icon: Calendar,
-    description: 'Evaluează un comentariu despre reducerea zilelor de muncă.',
-    data: {
-      text: "Ideea absurdă a unei săptămâni de lucru de patru zile va distruge complet economia noastră fragilă. Angajații leneși vor profita de această scuză patetică pentru a munci mai puțin, ducând la falimentul sigur al afacerilor cinstite.",
-      toxicWords: ["absurdă", "distruge", "complet", "fragilă", "leneși", "patetică", "falimentul", "sigur", "cinstite"],
-      explanation: "Acest text folosește hiperbole ('va distruge complet', 'falimentul sigur') pentru a crea panică. Atacă angajații numindu-i 'leneși' și descrie inițiativa drept o 'scuză patetică', evitând o discuție obiectivă despre productivitate."
-    }
+    id: 3,
+    level: "Nivelul 3",
+    title: "Amprenta AI: Perplexitate și Burstiness",
+    icon: Fingerprint,
+    content: (
+      <>
+        <p>Odată cu apariția modelelor de limbaj (LLM) precum ChatGPT, generarea de Fake News a devenit gratuită și instantanee. Totuși, textele generate de AI au o "amprentă" matematică invizibilă cu ochiul liber, dar detectabilă.</p>
+        <h3>Cei doi indicatori principali</h3>
+        <ul>
+          <li><strong>Perplexitatea (Perplexity):</strong> Măsoară cât de "previzibil" este un text. AI-ul alege mereu cel mai probabil următor cuvânt. Prin urmare, textele AI au o perplexitate foarte scăzută (sunt banale, previzibile). Oamenii folosesc cuvinte neașteptate, metafore ciudate sau argou, având o perplexitate mare.</li>
+          <li><strong>Varianța (Burstiness):</strong> Se referă la variația lungimii și structurii propozițiilor. Un om scrie o propoziție lungă și complexă. Apoi una scurtă. Apoi un fragment. AI-ul tinde să scrie propoziții de lungimi extrem de similare, cu o structură gramaticală perfectă, dar monotonă.</li>
+        </ul>
+        <h3>Aplicație în viața reală</h3>
+        <p>Dacă citești un articol lung, perfect gramatical, dar care pare "lipsit de suflet", monoton și folosește excesiv cuvinte de tranziție ("În primul rând", "În concluzie", "Este important de menționat"), există o șansă uriașă să fie generat sintetic pentru a umple o pagină de propagandă.</p>
+      </>
+    )
   },
   {
-    id: 'school-uniforms',
-    title: 'Uniformele Școlare Obligatorii',
-    icon: Shirt,
-    description: 'Analizează un articol de opinie despre impunerea uniformelor.',
-    data: {
-      text: "Impunerea dictatorială a uniformelor școlare este un atac brutal asupra libertății de exprimare a copiilor noștri. Directorii obsedați de control vor să transforme elevii inocenți în niște roboți supuși, distrugându-le complet individualitatea.",
-      toxicWords: ["dictatorială", "brutal", "obsedați", "inocenți", "roboți", "supuși", "distrugându-le", "complet"],
-      explanation: "Autorul folosește un limbaj extrem ('dictatorială', 'atac brutal') pentru a demoniza o regulă administrativă. Expresii precum 'roboți supuși' și 'directori obsedați de control' sunt menite să provoace indignare și revoltă."
-    }
+    id: 4,
+    level: "Nivelul 4",
+    title: "Deepfakes și Manipularea Vizuală",
+    icon: Video,
+    content: (
+      <>
+        <p>Dacă o imagine face cât o mie de cuvinte, un video fals face cât un milion de minciuni. Tehnologia Deepfake folosește rețele neuronale (GANs) pentru a înlocui fața sau vocea unei persoane cu o precizie înfricoșătoare.</p>
+        <h3>Tipuri de manipulare vizuală</h3>
+        <ul>
+          <li><strong>Deepfakes Audio-Video:</strong> Generarea unui discurs complet fals al unui președinte sau politician, clonându-i perfect vocea și mișcările buzelor.</li>
+          <li><strong>Cheapfakes (Shallowfakes):</strong> Manipulări ieftine, dar eficiente. De exemplu, încetinirea unui video cu un politician pentru a-l face să pară beat sau senil, sau tăierea unui clip din context (ex: arătând doar momentul în care cineva țipă, fără a arăta provocarea).</li>
+          <li><strong>Imagini generate de AI (Midjourney, DALL-E):</strong> Crearea de imagini fotorealiste cu evenimente care nu au avut loc niciodată (ex: arestarea unei persoane publice, dezastre naturale false).</li>
+        </ul>
+        <h3>Cum le detectăm?</h3>
+        <p>La imaginile AI, caută erori la detalii fine: degete asimetrice, text ilizibil pe fundal, umbre care nu se aliniază cu sursa de lumină. La video, fii atent la clipitul nenatural, desincronizarea subtilă a buzelor cu sunetul și marginile neclare în jurul feței.</p>
+      </>
+    )
   },
   {
-    id: 'tiktok-ban',
-    title: 'Interzicerea TikTok sub 16 ani',
-    icon: Smartphone,
-    description: 'Citește un text despre reglementarea rețelelor sociale pentru tineri.',
-    data: {
-      text: "Cenzura scandaloasă a aplicației TikTok pentru tineri este o mișcare disperată a politicienilor învechiți. Acești dinozauri deconectați de realitate încearcă cu disperare să reducă la tăcere vocile tinerilor sub pretextul ridicol al protecției.",
-      toxicWords: ["scandaloasă", "disperată", "învechiți", "dinozauri", "deconectați", "disperare", "reducă", "ridicol"],
-      explanation: "Textul abundă în insulte ('dinozauri', 'învechiți', 'deconectați') și folosește un ton alarmist ('cenzura scandaloasă'). Minimalizează preocupările legitime privind siguranța online numindu-le un 'pretext ridicol'."
-    }
+    id: 5,
+    level: "Nivelul 5",
+    title: "Algoritmii și Bula de Ecou",
+    icon: Filter,
+    content: (
+      <>
+        <p>Platformele de social media nu sunt neutre. Ele sunt optimizate pentru un singur lucru: <strong>Engagement (Timpul petrecut pe platformă)</strong>. Algoritmii au descoperit rapid că furia și indignarea țin oamenii lipiți de ecrane mai mult decât bucuria sau calmul.</p>
+        <h3>Cum se formează Bula de Ecou (Echo Chamber)?</h3>
+        <ul>
+          <li><strong>Biasul de Confirmare:</strong> Algoritmul îți analizează click-urile și îți servește doar informații care îți confirmă credințele deja existente. Dacă dai click pe o știre anti-vaccin, vei primi alte 100 de știri similare.</li>
+          <li><strong>Izolarea Informațională:</strong> Treptat, algoritmul ascunde complet opiniile contrare. Ajungi să crezi că "toată lumea gândește ca tine", pentru că feed-ul tău îți arată doar oameni care gândesc la fel.</li>
+          <li><strong>Radicalizarea:</strong> Pentru a te menține interesat, algoritmul trebuie să îți ofere conținut din ce în ce mai extrem. O simplă curiozitate despre un subiect controversat te poate duce, în câteva săptămâni, în grupuri radicale.</li>
+        </ul>
+        <h3>Soluția?</h3>
+        <p>Diversifică-ți sursele intenționat. Urmărește jurnaliști sau publicații cu care nu ești de acord. Curăță-ți istoricul și nu lăsa algoritmul să decidă ce este "realitatea" pentru tine.</p>
+      </>
+    )
   },
   {
-    id: 'meat-climate',
-    title: 'Consumul de Carne și Clima',
-    icon: Earth,
-    description: 'Examinează un articol despre impactul dietei asupra mediului.',
-    data: {
-      text: "Propaganda isterică a extremiștilor de mediu vrea să ne interzică complet dreptul fundamental de a mânca carne. Acești fanatici deliranți ne vor forța să consumăm insecte dezgustătoare în timp ce ei distrug intenționat tradițiile noastre milenare.",
-      toxicWords: ["propaganda", "isterică", "extremiștilor", "complet", "fanatici", "deliranți", "forța", "dezgustătoare", "distrug", "intenționat"],
-      explanation: "Acest paragraf folosește un limbaj puternic polarizant și denigrator ('extremiști', 'fanatici deliranți', 'propaganda isterică'). Apelează la dezgust ('insecte dezgustătoare') și la frica de a pierde tradițiile pentru a manipula cititorul."
-    }
+    id: 6,
+    level: "Nivelul 6",
+    title: "Igiena Informațională: Citirea Laterala",
+    icon: Search,
+    content: (
+      <>
+        <p>Cea mai mare greșeală pe care o facem când evaluăm o știre este să o "citim vertical" (să stăm pe pagina respectivă, să ne uităm la design, la secțiunea "Despre noi"). Site-urile de Fake News au adesea design-uri premium și secțiuni "Despre noi" foarte convingătoare.</p>
+        <h3>Regula de Aur: Citirea Laterală (Lateral Reading)</h3>
+        <p>Fact-checkerii profesioniști nu evaluează niciodată un site stând pe el. Ei deschid imediat tab-uri noi în browser (pe orizontală/lateral) și caută ce spun <em>alții</em> despre acea sursă.</p>
+        <ul>
+          <li><strong>Pasul 1: Părăsește site-ul.</strong> Nu încerca să îți dai seama dacă e adevărat doar citind articolul.</li>
+          <li><strong>Pasul 2: Caută sursa.</strong> Caută pe Google numele site-ului sau al autorului alături de cuvântul "wiki" sau "scam" sau "bias". Vezi cine îi finanțează.</li>
+          <li><strong>Pasul 3: Verifică afirmația.</strong> Copiază o frază cheie din articol și caut-o pe Google. Vezi dacă agențiile de presă majore (Reuters, AP, AFP) au raportat același lucru. Dacă o știre "șocantă" apare doar pe un blog obscur, este 99% falsă.</li>
+        </ul>
+        <p>Durează doar 30 de secunde să deschizi un tab nou și să verifici o sursă. Acele 30 de secunde te pot salva de la a fi manipulat.</p>
+      </>
+    )
   }
 ];
 
-export default function EchoChamberEscape() {
-  const [appState, setAppState] = useState<AppState>('select-topic');
-  const [isLoading, setIsLoading] = useState(false);
-  const [articleData, setArticleData] = useState<ArticleData | null>(null);
-  const [selectedWordIndices, setSelectedWordIndices] = useState<number[]>([]);
+type AppState = 'landing' | 'analyzer' | 'swipegame' | 'lessons' | 'documentation';
 
-  const cleanWord = (w: string) => w.toLowerCase().replace(/[^a-z0-9ăâîșț-]/g, '');
-
-  const handleSelectTopic = async (topic: typeof TOPICS[0]) => {
-    setIsLoading(true);
-    
-    try {
-      const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-      if (!apiKey) {
-        throw new Error("Gemini API key is missing.");
-      }
-
-      const ai = new GoogleGenAI({ apiKey });
-      
-      const prompt = `
-        Ești un expert în analiza discursului și manipulare media.
-        Scrie un scurt paragraf (aproximativ 3-4 propoziții) despre subiectul: "${topic.title}".
-        Context: ${topic.description}
-        Paragraful trebuie să fie scris dintr-o perspectivă extrem de părtinitoare, folosind intenționat un limbaj manipulator, exagerat, toxic și încărcat emoțional pentru a influența cititorul.
-        
-        Apoi, identifică exact cuvintele toxice/manipulatoare folosite în text (doar cuvintele individuale, exact cum apar în text, fără semne de punctuație).
-        
-        La final, oferă o scurtă explicație (2-3 propoziții) despre tehnicile de manipulare folosite în text (ex: apel la frică, atac la persoană, hiperbolă).
-      `;
-
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: prompt,
-        config: {
-          responseMimeType: "application/json",
-          responseSchema: {
-            type: Type.OBJECT,
-            properties: {
-              text: {
-                type: Type.STRING,
-                description: "Textul manipulator generat.",
-              },
-              toxicWords: {
-                type: Type.ARRAY,
-                items: {
-                  type: Type.STRING,
-                },
-                description: "Lista de cuvinte toxice sau manipulatoare din text (fără punctuație, litere mici).",
-              },
-              explanation: {
-                type: Type.STRING,
-                description: "Explicația tehnicilor de manipulare folosite.",
-              },
-            },
-            required: ["text", "toxicWords", "explanation"],
-          },
-        },
-      });
-
-      const jsonStr = response.text?.trim();
-      if (jsonStr) {
-        const data = JSON.parse(jsonStr) as ArticleData;
-        data.toxicWords = data.toxicWords.map(w => cleanWord(w));
-        setArticleData(data);
-      } else {
-        setArticleData(topic.data); // fallback
-      }
-    } catch (error) {
-      console.error("Error generating article:", error);
-      setArticleData(topic.data); // fallback to dummy data
-    } finally {
-      setSelectedWordIndices([]);
-      setAppState('analyzing');
-      setIsLoading(false);
-    }
-  };
-
-  const toggleWordSelection = (index: number) => {
-    if (appState !== 'analyzing') return;
-    
-    setSelectedWordIndices(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
-  };
-
-  const handleSubmitAnalysis = () => {
-    if (selectedWordIndices.length === 0) {
-      alert("Te rugăm să marchezi cel puțin un cuvânt înainte de a verifica.");
-      return;
-    }
-    setAppState('results');
-  };
-
-  const handlePlayAgain = () => {
-    setAppState('select-topic');
-    setArticleData(null);
-    setSelectedWordIndices([]);
-  };
+export default function CtrlAltTruth() {
+  const [currentView, setCurrentView] = useState<AppState>('landing');
+  const [activeLesson, setActiveLesson] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-orange-200">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="bg-orange-500 p-2 rounded-xl shadow-sm">
-              <ShieldAlert className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="font-bold text-xl md:text-2xl tracking-tight text-slate-900">Scapă din Bula de Ecou</h1>
-              <p className="text-sm text-slate-500 hidden md:block">Aplicație educațională pentru detectarea manipulării media</p>
-            </div>
+    <div className="min-h-screen bg-[#e7edeb] font-sans selection:bg-[#7c1f31]/20">
+      <Navbar currentView={currentView} setCurrentView={setCurrentView} />
+
+      <main className="max-w-6xl mx-auto px-6">
+        {currentView === 'landing' && (
+          <LandingView onNavigate={setCurrentView} />
+        )}
+
+        {currentView === 'analyzer' && (
+          <div className="py-12 md:py-20">
+            <AnalyzerView topics={TOPICS} />
           </div>
-          {appState !== 'select-topic' && (
-            <button 
-              onClick={handlePlayAgain}
-              className="text-sm font-medium text-orange-600 hover:text-orange-700 flex items-center gap-2 transition-colors px-4 py-2 rounded-lg hover:bg-orange-50"
-            >
-              <RefreshCcw className="w-4 h-4" />
-              <span className="hidden sm:inline">Alege alt subiect</span>
-            </button>
-          )}
-        </div>
-      </header>
+        )}
 
-      <main className="max-w-5xl mx-auto px-6 py-12 md:py-16">
-        {isLoading ? (
-          <motion.div 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
-            className="flex flex-col items-center justify-center py-32 space-y-6"
-          >
-            <Loader2 className="w-12 h-12 text-orange-500 animate-spin" />
-            <p className="text-lg text-slate-600 font-medium animate-pulse">Generăm un articol manipulator...</p>
-          </motion.div>
-        ) : (
-          <>
-            {/* Phase 1: Topic Selection */}
-            {appState === 'select-topic' && (
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }} 
-                animate={{ opacity: 1, y: 0 }}
-                className="space-y-10"
-              >
-                <div className="text-center space-y-4">
-                  <h2 className="text-4xl font-extrabold tracking-tight text-slate-900">Alege o Misiune</h2>
-                  <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                    Selectează un subiect de mai jos pentru a citi un articol generat. Scopul tău este să identifici și să marchezi cuvintele încărcate emoțional, subiective sau toxice folosite pentru a manipula cititorul.
-                  </p>
-                </div>
+        {currentView === 'swipegame' && (
+          <div className="py-12 md:py-20">
+            <SwipeGameView />
+          </div>
+        )}
 
-                <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                  {TOPICS.map((topic) => {
-                    const Icon = topic.icon;
-                    return (
-                      <button
-                        key={topic.id}
-                        onClick={() => handleSelectTopic(topic)}
-                        className="group relative flex flex-col items-start p-8 bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-orange-300 transition-all text-left"
-                      >
-                        <div className="bg-orange-50 p-4 rounded-xl mb-6 group-hover:bg-orange-100 transition-colors">
-                          <Icon className="w-8 h-8 text-orange-600" />
-                        </div>
-                        <h3 className="font-bold text-xl mb-3 text-slate-900">{topic.title}</h3>
-                        <p className="text-base text-slate-600 leading-relaxed">{topic.description}</p>
-                      </button>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            )}
-
-            {/* Phase 2 & 3: Analyzing & Results */}
-            {(appState === 'analyzing' || appState === 'results') && articleData && (
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }} 
-                animate={{ opacity: 1, y: 0 }}
-                className="space-y-10 max-w-4xl mx-auto"
-              >
-                <div className="space-y-3 text-center md:text-left">
-                  <div className="inline-flex items-center rounded-full border border-transparent bg-orange-100 px-3 py-1 text-sm font-semibold text-orange-800">
-                    {appState === 'analyzing' ? 'Analizează Textul' : 'Raportul de Analiză'}
-                  </div>
-                  <h2 className="text-3xl font-bold tracking-tight text-slate-900">
-                    {appState === 'analyzing' ? 'Identifică Manipularea' : 'Cum te-ai descurcat?'}
-                  </h2>
-                  <p className="text-lg text-slate-600">
-                    {appState === 'analyzing' 
-                      ? 'Apasă pe cuvintele care ți se par exagerate, subiective sau care încearcă să te manipuleze emoțional.' 
-                      : 'Compară selecțiile tale cu analiza realizată de Inteligența Artificială.'}
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 md:p-12 text-xl md:text-2xl leading-loose md:leading-loose text-slate-800">
-                  <div className="flex flex-wrap gap-x-1.5 gap-y-3">
-                    {articleData.text.split(' ').map((word, index) => {
-                      const isSelected = selectedWordIndices.includes(index);
-                      const cleanedWord = cleanWord(word);
-                      const isToxic = articleData.toxicWords.includes(cleanedWord);
-                      
-                      let wordClasses = "px-1.5 rounded transition-colors duration-200 ";
-                      
-                      if (appState === 'analyzing') {
-                        wordClasses += isSelected 
-                          ? "bg-orange-200 text-orange-900 cursor-pointer" 
-                          : "cursor-pointer hover:bg-slate-200";
-                      } else if (appState === 'results') {
-                        if (isSelected && isToxic) {
-                          // Correctly identified
-                          wordClasses += "bg-green-200 text-green-900 font-medium";
-                        } else if (!isSelected && isToxic) {
-                          // Missed
-                          wordClasses += "bg-red-100 text-red-900 underline decoration-red-500 decoration-2 underline-offset-4";
-                        } else if (isSelected && !isToxic) {
-                          // Wrongly selected
-                          wordClasses += "bg-slate-200 text-slate-500 line-through decoration-slate-400";
-                        } else {
-                          // Normal word, not selected, not toxic
-                          wordClasses += "text-slate-700 opacity-80";
-                        }
-                      }
-
-                      return (
-                        <span 
-                          key={index} 
-                          onClick={() => toggleWordSelection(index)}
-                          className={wordClasses}
-                        >
-                          {word}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {appState === 'analyzing' && (
-                  <div className="flex flex-col sm:flex-row items-center justify-between bg-white p-6 rounded-2xl border border-slate-200 shadow-sm gap-4">
-                    <div className="text-lg font-medium text-slate-600">
-                      Cuvinte suspecte marcate: <span className="text-orange-600 font-bold text-xl">{selectedWordIndices.length}</span>
-                    </div>
-                    <button 
-                      onClick={handleSubmitAnalysis}
-                      className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl text-lg font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 bg-orange-600 text-white hover:bg-orange-700 h-14 px-8 shadow-md"
-                    >
-                      Verifică Analiza
-                    </button>
-                  </div>
-                )}
-
-                {appState === 'results' && (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="space-y-8"
-                  >
-                    {/* Legend */}
-                    <div className="flex flex-wrap justify-center md:justify-start gap-6 text-base bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center gap-3">
-                        <span className="w-4 h-4 rounded-full bg-green-400 shadow-sm"></span>
-                        <span className="text-slate-700 font-medium">Identificat Corect</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="w-4 h-4 rounded-full bg-red-400 shadow-sm"></span>
-                        <span className="text-slate-700 font-medium">Cuvânt Toxic Ratat</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="w-4 h-4 rounded-full bg-slate-300 shadow-sm"></span>
-                        <span className="text-slate-700 font-medium">Selectat Greșit</span>
-                      </div>
-                    </div>
-
-                    {/* Explanation Alert */}
-                    <div className="relative w-full rounded-2xl border-2 border-orange-200 bg-orange-50/50 p-8 text-orange-900 shadow-sm">
-                      <div className="flex flex-col md:flex-row gap-5">
-                        <AlertCircle className="w-8 h-8 text-orange-600 shrink-0" />
-                        <div className="space-y-3">
-                          <h4 className="text-xl font-bold text-orange-900">Explicația Inteligenței Artificiale</h4>
-                          <p className="text-lg text-orange-800/90 leading-relaxed">
-                            {articleData.explanation}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-center pt-6">
-                      <button 
-                        onClick={handlePlayAgain}
-                        className="inline-flex items-center justify-center rounded-xl text-lg font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 bg-white border-2 border-orange-200 text-orange-700 hover:bg-orange-50 hover:border-orange-300 h-14 px-10 shadow-sm gap-3"
-                      >
-                        <RefreshCcw className="w-5 h-5" />
-                        Joacă din nou / Alege alt subiect
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </motion.div>
-            )}
-          </>
+        {currentView === 'lessons' && (
+          <LessonsView 
+            lessons={LESSONS} 
+            activeLesson={activeLesson} 
+            setActiveLesson={setActiveLesson} 
+          />
+        )}
+        {currentView === 'documentation' && (
+          <DocumentationView />
         )}
       </main>
     </div>
