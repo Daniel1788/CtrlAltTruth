@@ -393,7 +393,6 @@ export default function AnalyzerView({ topics }: AnalyzerViewProps) {
                                     <div className="w-full bg-gray-200 rounded-full h-2">
                                       <div className="bg-[#7c1f31] h-2 rounded-full" style={{ width: `${Math.min(100, (stylometry.stdDev / 10) * 100)}%` }}></div>
                                     </div>
-                                    <p className="text-xs text-[#1a1a1a]/60 mt-1">Scor sub 4 indică uniformitate (AI).</p>
                                   </div>
 
                                   <div>
@@ -403,17 +402,6 @@ export default function AnalyzerView({ topics }: AnalyzerViewProps) {
                                     </div>
                                     <div className="w-full bg-gray-200 rounded-full h-2">
                                       <div className="bg-[#1a1a1a] h-2 rounded-full" style={{ width: `${stylometry.lexicalDiversity}%` }}></div>
-                                    </div>
-                                  </div>
-
-                                  <div className="mt-6 pt-4 border-t border-[#1a1a1a]/10">
-                                    <div className="text-sm text-[#1a1a1a]/60 mb-1">Verdict Analiză Locală:</div>
-                                    <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-bold ${
-                                      stylometry.verdict === "Tipar Mecanic (Specific AI)" 
-                                        ? "bg-red-100 text-red-700" 
-                                        : "bg-green-100 text-green-700"
-                                    }`}>
-                                      {stylometry.verdict}
                                     </div>
                                   </div>
                                 </>

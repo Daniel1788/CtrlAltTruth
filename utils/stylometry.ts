@@ -4,7 +4,6 @@ export interface StylometryResult {
   stdDev: number;
   avgWordLength: number;
   lexicalDiversity: number;
-  verdict: "Tipar Mecanic (Specific AI)" | "Tipar Organic (Uman)";
 }
 
 export function calculateStylometry(text: string): StylometryResult {
@@ -17,7 +16,7 @@ export function calculateStylometry(text: string): StylometryResult {
     .filter(s => s.length > 0);
 
   if (sentences.length === 0) {
-    return { score: 0, meanSentenceLength: 0, stdDev: 0, avgWordLength: 0, lexicalDiversity: 0, verdict: "Tipar Mecanic (Specific AI)" };
+    return { score: 0, meanSentenceLength: 0, stdDev: 0, avgWordLength: 0, lexicalDiversity: 0 };
   }
   
   // Step 2: Calculate word count for each sentence
@@ -58,14 +57,11 @@ export function calculateStylometry(text: string): StylometryResult {
     score = Math.max(0, score - 10);
   }
   
-  const verdict = stdDev < 4 ? "Tipar Mecanic (Specific AI)" : "Tipar Organic (Uman)";
-
   return {
     score: Math.round(score),
     meanSentenceLength: parseFloat(meanSentenceLength.toFixed(1)),
     stdDev: parseFloat(stdDev.toFixed(2)),
     avgWordLength: parseFloat(avgWordLength.toFixed(1)),
-    lexicalDiversity: parseFloat(lexicalDiversity.toFixed(1)),
-    verdict
+    lexicalDiversity: parseFloat(lexicalDiversity.toFixed(1))
   };
 }
