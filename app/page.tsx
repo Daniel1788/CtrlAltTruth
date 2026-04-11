@@ -29,15 +29,25 @@ const LESSONS = [
     content: (
       <>
         <p>Limbajul polarizant este principala armă a dezinformării moderne. Scopul său nu este să informeze, ci să împartă lumea în două tabere ireconciliabile: &quot;Noi&quot; (cei buni, victimele) și &quot;Ei&quot; (cei răi, asupritorii).</p>
-        <h3>Cum funcționează?</h3>
+        
+        <h3>Economia Indignării (Outrage Economy)</h3>
+        <p>În mediul digital, atenția ta este moneda de schimb. Platformele și creatorii de conținut au descoperit că <strong>furia</strong> este cea mai &quot;lipicioasă&quot; emoție. Un titlu care te revoltă are șanse mult mai mari să fie distribuit decât unul echilibrat. Această &quot;economie a indignării&quot; prioritizează viralitatea în detrimentul adevărului.</p>
+        
+        <h3>Mecanismul Biologic: Deturnarea Amigdalei</h3>
+        <p>Când simțim furie sau frică intensă, creierul nostru intră în modul &quot;luptă sau fugi&quot;. Amigdala preia controlul, iar <strong>cortexul prefrontal</strong> (centrul logicii și al analizei) este temporar dezactivat. Manipulatorii profită de această fereastră biologică pentru a insera idei false fără a fi filtrate de rațiune.</p>
+
+        <h3>Sintaxa Manipulării</h3>
         <ul>
-          <li><strong>Declanșarea fricii și furiei:</strong> Emoțiile negative puternice scurtcircuitează cortexul prefrontal (partea creierului responsabilă cu gândirea logică). Când ești furios, ești mult mai predispus să dai &quot;Share&quot; fără să verifici sursa.</li>
-          <li><strong>Adjective extreme:</strong> Cuvinte precum &quot;catastrofal&quot;, &quot;apocaliptic&quot;, &quot;trădare&quot;, &quot;șocant&quot; sunt folosite pentru a hiperboliza evenimente banale.</li>
-          <li><strong>Sintaxa Clickbait:</strong> Titluri care ascund informația esențială (&quot;Nu o să-ți vină să crezi ce a făcut...&quot;) pentru a exploata curiozitatea naturală a creierului (curiosity gap).</li>
+          <li><strong>Generalizări excesive:</strong> &quot;Toți [grupul X] sunt [epitet negativ].&quot; - elimină nuanțele și complexitatea realității.</li>
+          <li><strong>Limbaj apocaliptic:</strong> &quot;Dezastru total&quot;, &quot;Sfârșitul democrației&quot;, &quot;Ultima șansă&quot; - creează un sentiment de urgență falsă.</li>
+          <li><strong>Curiosity Gap (Clickbait):</strong> &quot;Nu o să-ți vină să crezi ce s-a întâmplat!&quot; - forțează un click prin exploatarea curiozității naturale, adesea livrând o informație banală.</li>
         </ul>
-        <h3>Exemplu practic</h3>
-        <p><em>Neutru:</em> &quot;Guvernul a propus o nouă taxă de 1% pentru companiile mari.&quot;</p>
-        <p><em>Polarizant:</em> &quot;JAF LA DRUMUL MARE! Guvernul ne FURĂ ultimii bani pentru a hrăni corporațiile străine! Ieșiți în stradă!&quot;</p>
+
+        <div className="bg-[#7c1f31]/5 p-4 rounded-xl border-l-4 border-[#7c1f31] my-4">
+          <p className="text-sm italic"><strong>Exemplu de contrast:</strong></p>
+          <p className="text-sm"><em>Neutru:</em> &quot;Guvernul a propus o nouă taxă de 1% pentru companiile mari.&quot;</p>
+          <p className="text-sm"><em>Polarizant:</em> &quot;JAF LA DRUMUL MARE! Guvernul ne FURĂ ultimii bani pentru a hrăni corporațiile străine! Ieșiți în stradă până nu e prea târziu!&quot;</p>
+        </div>
       </>
     ),
     quiz: [
@@ -86,13 +96,22 @@ const LESSONS = [
     icon: MessageSquareWarning,
     content: (
       <>
-        <p>Creierul uman este programat evolutiv să urmeze mulțimea (social proof). Dacă vedem că 10.000 de oameni susțin o idee, subconștientul nostru tinde să o valideze, chiar dacă ideea este falsă.</p>
+        <p>Creierul uman este programat evolutiv să urmeze mulțimea (<strong>Social Proof</strong>). Într-o situație ambiguă, ne uităm la ce fac ceilalți pentru a decide cum să reacționăm. Manipulatorii digitali &quot;hackuiesc&quot; acest instinct prin tehnologii de automatizare.</p>
         <h3>Tehnici de manipulare a consensului</h3>
         <ul>
-          <li><strong>Astroturfing:</strong> Crearea iluziei unei mișcări &quot;de la firul ierbii&quot;. O campanie finanțată de un grup de interese folosește mii de conturi false pentru a face să pară că cetățenii obișnuiți protestează spontan.</li>
-          <li><strong>Fermele de Troli și Boți:</strong> Rețele automatizate care dau like, share și comentează la comandă pentru a păcăli algoritmii de viralitate.</li>
-          <li><strong>Efectul de Bandwagon:</strong> Oamenii reali încep să adopte opinia falsă doar pentru că pare a fi opinia majorității.</li>
+          <li>
+            <strong>Astroturfing:</strong> Numele vine de la &quot;AstroTurf&quot; (gazon artificial). Este o campanie care mimează o mișcare civică spontană (&quot;grassroots&quot;), dar este de fapt orchestrată centralizat de grupuri de interese sau guverne.
+          </li>
+          <li>
+            <strong>Fermele de Troli:</strong> Organizații unde angajați reali gestionează sute de identități false. Aceștia nu sunt doar roboți; ei poartă discuții, provoacă certuri și creează iluzia că o anumită opinie este majoritară prin volumul imens de comentarii.
+          </li>
+          <li>
+            <strong>Efectul de Bandwagon:</strong> Oamenii reali încep să adopte opinia falsă doar pentru că pare a fi opinia majorității. Nimeni nu vrea să fie singurul care gândește diferit într-un spațiu digital care pare unanim.
+          </li>
         </ul>
+
+        <h3>Cum detectăm consensul fals?</h3>
+        <p>Fii atent la <strong>unison</strong>. Dacă mii de oameni folosesc exact aceleași cuvinte, în același interval de timp, fără nicio variație personală sau greșeli de dactilografiere diferite, probabil privești o operațiune de influențare coordonată. De asemenea, verifică profilurile: au poze de stoc? Au fost create toate în aceeași lună?</p>
       </>
     ),
     quiz: [
@@ -141,12 +160,24 @@ const LESSONS = [
     icon: Fingerprint,
     content: (
       <>
-        <p>Odată cu apariția modelelor de limbaj (LLM), generarea de Fake News a devenit gratuită și instantanee. Totuși, textele generate de AI au o &quot;amprentă&quot; matematică detectabilă.</p>
-        <h3>Cei doi indicatori principali</h3>
+        <p>Modelele de limbaj (LLM) pot genera texte perfecte gramatical, dar ele nu &quot;înțeleg&quot; realitatea; ele doar prezic următorul cuvânt. Această natură statistică lasă urme matematice specifice.</p>
+        
+        <h3>Cei doi piloni ai detecției</h3>
         <ul>
-          <li><strong>Perplexitatea (Perplexity):</strong> Măsoară cât de &quot;previzibil&quot; este un text. AI-ul alege adesea cel mai probabil următor cuvânt, rezultând într-o perplexitate scăzută.</li>
-          <li><strong>Varianța (Burstiness):</strong> Se referă la variația lungimii și structurii propozițiilor. AI-ul tinde să scrie propoziții de lungimi similare, în timp ce oamenii alternează propoziții scurte cu cele lungi.</li>
+          <li>
+            <strong>Perplexitatea (Perplexity):</strong> Măsoară cât de surprins este un model de un text. AI-ul tinde să aleagă cuvintele cele mai probabile statistic. Un text cu perplexitate scăzută este &quot;prea previzibil&quot; pentru a fi uman.
+          </li>
+          <li>
+            <strong>Varianța (Burstiness):</strong> Oamenii scriu în &quot;explozii&quot;. Avem propoziții scurte, urmate de una foarte lungă și complexă, apoi poate un fragment. AI-ul tinde spre o lungime medie constantă, rezultând într-un ritm monoton, &quot;plat&quot;.
+          </li>
         </ul>
+
+        <h3>Problema Halucinațiilor</h3>
+        <p>Deoarece AI-ul este un motor de probabilități, el poate genera fapte false cu o încredere totală. Aceasta se numește <strong>halucinație</strong>. Un text AI poate cita studii care nu există sau evenimente istorice inventate, păstrând un ton academic și autoritar.</p>
+        
+        <p className="text-sm bg-white/50 p-3 rounded-lg border border-[#7c1f31]/10">
+          <strong>Sfat:</strong> Dacă un text pare &quot;prea perfect&quot; și lipsit de orice eroare sau variație stilistică, trece-l prin filtrul de burstiness.
+        </p>
       </>
     ),
     quiz: [
@@ -195,13 +226,24 @@ const LESSONS = [
     icon: Video,
     content: (
       <>
-        <p>Dacă o imagine face cât o mie de cuvinte, un video fals face cât un milion de minciuni. Tehnologia Deepfake folosește rețele neuronale pentru a înlocui fața sau vocea unei persoane.</p>
-        <h3>Tipuri de manipulare vizuală</h3>
+        <p>Tehnologia a ajuns în punctul în care &quot;a vedea nu mai înseamnă a crede&quot;. Manipularea vizuală variază de la editări grosolane până la simulări digitale perfecte.</p>
+        
+        <h3>Spectrul Falsificării</h3>
         <ul>
-          <li><strong>Deepfakes Audio-Video:</strong> Generarea unui discurs complet fals, clonând vocea și mișcările buzelor.</li>
-          <li><strong>Cheapfakes:</strong> Manipulări simple, cum ar fi încetinirea unui video pentru a schimba percepția asupra stării unei persoane.</li>
-          <li><strong>Imagini generate de AI:</strong> Crearea de imagini fotorealiste cu evenimente care nu au avut loc niciodată.</li>
+          <li>
+            <strong>Deepfakes:</strong> Folosesc rețele neuronale (GANs) pentru a mapa trăsăturile unei persoane pe corpul alteia sau pentru a clona vocea. Sunt greu de realizat perfect, dar tehnologia avansează rapid.
+          </li>
+          <li>
+            <strong>Cheapfakes (sau Shallowfakes):</strong> Manipulări care nu folosesc AI, ci doar unelte de editare clasice. 
+            <br/><span className="text-sm opacity-70">Exemplu: Încetinirea unui video cu un politician pentru a-l face să pară sub influența alcoolului sau confuz.</span>
+          </li>
+          <li>
+            <strong>Recontextualizarea:</strong> Folosirea unei imagini reale, dar cu o descriere falsă. O poză de la un protest din 2012 este prezentată ca fiind de ieri, dintr-o altă țară.
+          </li>
         </ul>
+
+        <h3>Semne de întrebare (Red Flags)</h3>
+        <p>La deepfakes, caută erori în zonele complexe: reflexiile din ochi, modul în care părul atinge fața, clipitul neregulat sau umbrele care nu se potrivesc cu sursa de lumină.</p>
       </>
     ),
     quiz: [
@@ -250,13 +292,22 @@ const LESSONS = [
     icon: Filter,
     content: (
       <>
-        <p>Platformele de social media sunt optimizate pentru <strong>Engagement</strong>. Algoritmii au descoperit că furia și indignarea țin oamenii lipiți de ecrane.</p>
-        <h3>Cum se formează Bula de Ecou?</h3>
+        <p>Algoritmii rețelelor sociale nu sunt arbitri ai adevărului; ei sunt agenți de vânzări ai atenției tale. Scopul lor unic este <strong>Watch Time</strong> (timpul petrecut pe platformă).</p>
+        
+        <h3>Anatomia Bulei de Ecou</h3>
         <ul>
-          <li><strong>Biasul de Confirmare:</strong> Algoritmul îți servește doar informații care îți confirmă credințele deja existente.</li>
-          <li><strong>Izolarea Informațională:</strong> Treptat, algoritmul ascunde complet opiniile contrare.</li>
-          <li><strong>Radicalizarea:</strong> Pentru a te menține interesat, algoritmul oferă conținut din ce în ce mai extrem.</li>
+          <li>
+            <strong>Filtrarea Algoritmică:</strong> Algoritmul învață ce îți place și îți oferă mai mult din același lucru. Dacă dai click pe o teorie a conspirației, feed-ul tău va fi inundat de conținut similar.
+          </li>
+          <li>
+            <strong>Biasul de Confirmare:</strong> Creierul nostru caută validare, nu provocare. Ne simțim bine când citim ceva care ne dă dreptate și ignorăm sau atacăm informațiile care ne contrazic.
+          </li>
+          <li>
+            <strong>Rabbit Holes (Găurile de Iepure):</strong> Algoritmii tind să recomande conținut din ce în ce mai extrem pentru a menține nivelul de dopamină ridicat. Astfel, un utilizator poate trece de la &quot;rețete sănătoase&quot; la &quot;teorii radicale despre nutriție&quot; în doar câteva click-uri.
+          </li>
         </ul>
+
+        <p>Rezultatul? Trăim în realități paralele, unde fiecare tabără are propriul set de &quot;fapte&quot; și nicio punte de comunicare cu ceilalți.</p>
       </>
     ),
     quiz: [
@@ -305,13 +356,26 @@ const LESSONS = [
     icon: Search,
     content: (
       <>
-        <p>Cea mai mare greșeală este să &quot;citim vertical&quot; (să evaluăm un site doar după aspectul său). Site-urile de Fake News au adesea design-uri premium.</p>
-        <h3>Regula de Aur: Citirea Laterală</h3>
-        <ul>
-          <li><strong>Pasul 1: Părăsește site-ul.</strong> Nu încerca să îți dai seama dacă e adevărat doar citind articolul.</li>
-          <li><strong>Pasul 2: Caută sursa.</strong> Caută pe Google ce spun <em>alții</em> despre acea sursă.</li>
-          <li><strong>Pasul 3: Verifică afirmația.</strong> Vezi dacă agențiile de presă majore au raportat același lucru.</li>
-        </ul>
+        <p>În era dezinformării, nu mai este suficient să citești un articol. Trebuie să devii un detectiv al informației folosind tehnici de verificare rapidă.</p>
+        
+        <h3>Metoda SIFT (Stop, Investigate, Find, Trace)</h3>
+        <ol className="space-y-4 my-4">
+          <li>
+            <strong>STOP:</strong> Când simți o emoție puternică (furia, surpriza), oprește-te. Nu distribui. Emoția este un semn că ești ținta unei manipulări.
+          </li>
+          <li>
+            <strong>Investighează sursa:</strong> Nu te uita la design-ul site-ului. Caută pe Wikipedia sau pe Google ce spun alții despre această publicație. Cine o finanțează?
+          </li>
+          <li>
+            <strong>Găsește o acoperire mai bună:</strong> Caută subiectul pe un motor de căutare. Dacă o știre &quot;bombă&quot; apare doar pe un site obscur și nu pe agențiile de presă majore (Reuters, AP, BBC), este probabil falsă.
+          </li>
+          <li>
+            <strong>Urmează citatele la sursă:</strong> De unde provine imaginea sau citatul? Folosește <strong>Reverse Image Search</strong> pentru a vedea contextul original al unei fotografii.
+          </li>
+        </ol>
+
+        <h3>Citirea Laterală</h3>
+        <p>În loc să parcurgi pagina de sus în jos (citire verticală), deschide tab-uri noi în lateral. Verifică reputația autorului și a site-ului înainte de a acorda credit conținutului.</p>
       </>
     ),
     quiz: [
