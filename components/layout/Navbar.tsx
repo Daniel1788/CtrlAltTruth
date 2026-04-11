@@ -60,7 +60,7 @@ export default function Navbar({ currentView, setCurrentView }: NavbarProps) {
           <button
             onClick={toggleTheme}
             className="p-2.5 rounded-xl bg-white dark:bg-[#1a1a1a] border border-[#1a1a1a]/10 dark:border-white/10 text-[#1a1a1a] dark:text-white hover:bg-[#1a1a1a]/5 dark:hover:bg-white/5 transition-all shadow-sm"
-            aria-label="Toggle theme"
+            aria-label={theme === 'light' ? 'Activează modul întunecat' : 'Activează modul luminos'}
           >
             {!mounted ? (
               <div className="w-5 h-5" />
@@ -77,6 +77,7 @@ export default function Navbar({ currentView, setCurrentView }: NavbarProps) {
           <button
             onClick={toggleTheme}
             className="p-2 text-[#1a1a1a] dark:text-white hover:bg-[#1a1a1a]/10 dark:hover:bg-white/10 rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
+            aria-label={theme === 'light' ? 'Activează modul întunecat' : 'Activează modul luminos'}
           >
             {!mounted ? (
               <div className="w-5 h-5" />
@@ -89,6 +90,8 @@ export default function Navbar({ currentView, setCurrentView }: NavbarProps) {
           <button 
             className="p-2 text-[#1a1a1a] dark:text-white hover:bg-[#1a1a1a]/10 dark:hover:bg-white/10 rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Închide meniul' : 'Deschide meniul'}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
