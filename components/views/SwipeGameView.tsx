@@ -14,7 +14,17 @@ const HEADLINES = [
   { id: 7, text: "Nu o să-ți vină să crezi ce a spus acest politician în direct la TV! A distrus complet opoziția!", isFake: true, explanation: "Limbaj senzaționalist ('Nu o să-ți vină să crezi', 'A distrus complet') menit să polarizeze." },
   { id: 8, text: "Echipa națională de fotbal a obținut o remiză, 1-1, în meciul de calificare de aseară.", isFake: false, explanation: "Prezentare simplă și directă a unui rezultat sportiv." },
   { id: 9, text: "TRĂDARE NAȚIONALĂ! Ne-au vândut țara străinilor pentru doi bani! Ieșiți în stradă ACUM!", isFake: true, explanation: "Apel direct la acțiune ('Ieșiți în stradă ACUM!') bazat pe furie și acuzații extreme ('TRĂDARE NAȚIONALĂ')." },
-  { id: 10, text: "Compania locală de transport public anunță introducerea a 20 de noi autobuze electrice.", isFake: false, explanation: "Știre locală utilitară, fără elemente de manipulare emoțională." }
+  { id: 10, text: "Compania locală de transport public anunță introducerea a 20 de noi autobuze electrice.", isFake: false, explanation: "Știre locală utilitară, fără elemente de manipulare emoțională." },
+  { id: 11, text: "Cercetătorii au descoperit că lămâia vindecă cancerul în 24 de ore, dar marile companii farmaceutice ascund adevărul!", isFake: true, explanation: "Promisiuni de vindecări miraculoase și teorii ale conspirației împotriva 'Big Pharma'." },
+  { id: 12, text: "Organizația Mondială a Sănătății a publicat un nou ghid privind consumul de zahăr la copii.", isFake: false, explanation: "Știre de sănătate publică, citând o organizație internațională recunoscută." },
+  { id: 13, text: "BREAKING: NASA a confirmat că un asteroid uriaș va lovi Pământul săptămâna viitoare. Autoritățile păstrează tăcerea!", isFake: true, explanation: "Apel la panică ('BREAKING', 'asteroid uriaș') și acuzații de mușamalizare." },
+  { id: 14, text: "Sonda spațială Voyager 1 a reluat trimiterea datelor științifice către Pământ după o pauză de câteva luni.", isFake: false, explanation: "Informație tehnică despre o misiune spațială reală, raportată neutru." },
+  { id: 15, text: "O celebră actriță de la Hollywood a fost arestată în secret pentru participarea la ritualuri oculte!", isFake: true, explanation: "Zvonuri nefondate despre celebrități și elemente de senzaționalism ocult." },
+  { id: 16, text: "Festivalul Internațional de Film de la Cannes și-a anunțat selecția oficială pentru ediția din acest an.", isFake: false, explanation: "Știre culturală standard despre un eveniment internațional major." },
+  { id: 17, text: "Banii cash vor fi interziși complet în România de la 1 iulie! Totul va fi controlat digital!", isFake: true, explanation: "Dezinformare economică menită să genereze panică și rezistență față de digitalizare." },
+  { id: 18, text: "Parlamentul a adoptat o nouă lege care simplifică procedurile de înmatriculare a vehiculelor.", isFake: false, explanation: "Raportare administrativă despre o schimbare legislativă concretă." },
+  { id: 19, text: "Experiment secret în Munții Bucegi: S-a deschis o poartă energetică spre o altă dimensiune!", isFake: true, explanation: "Pseudostiință și mituri locale folosite pentru a genera trafic pe site-uri obscure." },
+  { id: 20, text: "O echipă de arheologi a descoperit vestigii dacice inedite în timpul lucrărilor la noua autostradă.", isFake: false, explanation: "Știre arheologică legată de proiecte de infrastructură reale." }
 ];
 
 const shuffleHeadlines = () => [...HEADLINES].sort(() => Math.random() - 0.5);
