@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
-import { Loader2, ArrowRight, RefreshCcw, ThumbsUp, MessageCircle, Share2, Globe, Clock, User, Brain } from 'lucide-react';
+import { Loader2, ArrowRight, RefreshCcw, ThumbsUp, MessageCircle, Share2, Globe, Clock, User, Brain, HelpCircle } from 'lucide-react';
 import { calculateStylometry } from '@/utils/stylometry';
+import TutorialOverlay from '@/components/ui/TutorialOverlay';
 
 interface ArticleData {
   text: string;
@@ -30,7 +31,43 @@ export default function AnalyzerView({ topics }: AnalyzerViewProps) {
   const [selectedWordIndices, setSelectedWordIndices] = useState<number[]>([]);
   const [timeLeft, setTimeLeft] = useState(25);
   const [uiStyle, setUiStyle] = useState<'facebook' | 'news'>('news');
+  const [showTutorial, setShowTutorial] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const hasSeenTutorial = localStorage.getItem('hasSeenAnalyzerTutorial');
+    if (!hasSeenTutorial) {
+      setShowTutorial(true);
+    }
+  }, []);
+
+  const handleCloseTutorial = () => {
+    setShowTutorial(false);
+    localStorage.setItem('hasSeenAnalyzerTutorial', 'true');
+  };
+
+  const tutorialSteps = [
+    {
+      title: "Bun venit în Laborator!",
+      description: "Ești gata să devii un detectiv digital? Aici vei învăța să recunoști mecanismele subtile ale manipulării online.",
+      position: 'center' as const
+    },
+    {
+      title: "1. Alege un Subiect",
+      description: "Selectează o temă din listă. Vom genera un articol care folosește tehnici reale de dezinformare pentru a te provoca.",
+      position: 'center' as const
+    },
+    {
+      title: "2. Analizează și Marchează",
+      description: "Vei avea 25 de secunde să citești textul. Apasă pe cuvintele care ți se par subiective, exagerate sau încărcate emoțional.",
+      position: 'center' as const
+    },
+    {
+      title: "3. Vezi Adevărul",
+      description: "La final, Inteligența Artificială îți va arăta ce ai ratat și va analiza amprenta stilometrică a textului pentru a vedea dacă e generat de AI.",
+      position: 'center' as const
+    }
+  ];
 
   const cleanWord = (w: string) => w.toLowerCase().replace(/[^a-z0-9ăâîșț-]/g, '');
 
@@ -224,6 +261,12 @@ export default function AnalyzerView({ topics }: AnalyzerViewProps) {
 
   return (
     <div className="w-full">
+      <TutorialOverlay 
+        isOpen={showTutorial} 
+        onClose={handleCloseTutorial} 
+        steps={tutorialSteps} 
+      />
+      
       {isLoading ? (
         <motion.div 
           initial={{ opacity: 0 }} 
@@ -242,7 +285,16 @@ export default function AnalyzerView({ topics }: AnalyzerViewProps) {
               className="space-y-10"
             >
               <div className="text-center space-y-4">
-                <h2 className="text-4xl font-extrabold tracking-tight text-[#1a1a1a] dark:text-white">Laboratorul de Adevăr</h2>
+                <div className="flex items-center justify-center gap-4">
+                  <h2 className="text-4xl font-extrabold tracking-tight text-[#1a1a1a] dark:text-white">Laboratorul de Adevăr</h2>
+                  <button 
+                    onClick={() => setShowTutorial(true)}
+                    className="p-2 rounded-full bg-[#7c1f31]/10 text-[#7c1f31] hover:bg-[#7c1f31]/20 transition-colors"
+                    title="Arată tutorialul"
+                  >
+                    <HelpCircle className="w-6 h-6" />
+                  </button>
+                </div>
                 <p className="text-lg text-[#1a1a1a]/80 dark:text-white/80 max-w-2xl mx-auto">
                   Selectează un subiect de mai jos pentru a citi un articol generat. Scopul tău este să identifici și să marchezi cuvintele încărcate emoțional, subiective sau toxice folosite pentru a manipula cititorul.
                 </p>

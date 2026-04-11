@@ -26,7 +26,7 @@ export async function POST(req: Request) {
         
         const prompt = `
           Ești un expert în psihologia maselor și dezinformare.
-          Scrie un text manipulator de 70 de cuvinte despre subiectul: "${topicTitle}".
+          Scrie un text manipulator de aproximativ 45-50 de cuvinte despre subiectul: "${topicTitle}".
           Context: ${topicDescription}
           Extrage cuvintele toxice într-un array.
           
