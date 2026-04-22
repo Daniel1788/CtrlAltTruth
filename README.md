@@ -18,7 +18,7 @@
 
 ## Prezentare Generală
 
-Într-o eră în care inteligența artificială generativă poate crea mii de articole manipulatoare în câteva secunde, gândirea critică este singurul tău firewall. **Ctrl+Alt+Truth** este o platformă educațională interactivă creată pentru a democratiza adevărul și a proteja consumatorii de conținut digital de manipularea media, propaganda și ingineria emoțională.
+Într-o eră în care inteligența artificială generativă poate crea mii de articole manipulatoare în câteva secunde, gândirea critică este singurul tău firewall. **Ctrl+Alt+Truth** este o platformă educațională interactivă creată pentru a democratiza adevărul și a proteja consumatorii de conținut digital de manipularea media, propaganda și .
 
 Misiunea noastră este să antrenăm utilizatorii să detecteze tiparele dezinformării înainte de a fi influențați, combătând răspândirea rapidă a știrilor false în feed-urile algoritmice ale rețelelor sociale.
 
@@ -26,18 +26,12 @@ Misiunea noastră este să antrenăm utilizatorii să detecteze tiparele dezinfo
 
 * **Laboratorul de Adevăr (Analizatorul)**
   Un mediu interactiv în care utilizatorii selectează subiecte actuale, iar AI-ul nostru generează pe loc un articol manipulator și subiectiv. Utilizatorii au la dispoziție un timp limitat pentru a identifica limbajul încărcat emoțional, exagerat sau toxic. Sistemul oferă feedback imediat, o analiză radar a emoțiilor și explicații detaliate ale tacticilor de manipulare folosite.
-  
-  ![Screenshot Laboratorul de Adevăr](placeholder_screenshot_laborator.png)
 
 * **Swipe Game**
   Un joc rapid și intuitiv conceput pentru a-ți testa și îmbunătăți judecata la fracțiune de secundă. Glisează pentru a clasifica titlurile și afirmațiile, antrenându-ți creierul să distingă rapid informațiile credibile de clickbait-ul senzaționalist.
-  
-  ![Screenshot Swipe Game](placeholder_screenshot_swipegame.png)
 
 * **Monitorizarea Progresului și Profiluri**
   Susținut de Supabase, utilizatorii își pot crea conturi pentru a-și urmări progresul în învățare, a revedea analizele trecute și a observa cum li se îmbunătățesc abilitățile de gândire critică în timp. Platforma rămâne complet accesibilă și pentru utilizatorii vizitatori (guest) care doresc să învețe fără a se înregistra.
-  
-  ![Screenshot Profil Utilizator](placeholder_screenshot_profil.png)
 
 * **Accesibilitate Multilingvă**
   Instrumentele de traducere integrate asigură faptul că limba nu reprezintă o barieră în calea accesării unei educații media de înaltă calitate.
