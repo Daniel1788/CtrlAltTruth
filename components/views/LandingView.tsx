@@ -1,17 +1,13 @@
-
 // Licensed under the GNU AGPL-3.0-only.
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
+import { useRouter } from 'next/navigation';
 import { ArrowRight, ShieldCheck, BarChart3, Globe, Smartphone } from 'lucide-react';
 
-interface LandingViewProps {
-  onNavigate: (view: any) => void;
-}
-
-export default function LandingView({ onNavigate }: LandingViewProps) {
+export default function LandingView() {
+  const router = useRouter();
   const [statsAnimated, setStatsAnimated] = useState(false);
   const [dots, setDots] = useState(Array(100).fill('neutral'));
 
@@ -96,14 +92,14 @@ export default function LandingView({ onNavigate }: LandingViewProps) {
         </div>
         <div className="flex flex-col sm:flex-row gap-4">
           <button 
-            onClick={() => onNavigate('analyzer')}
+            onClick={() => router.push('/analyzer')}
             className="inline-flex items-center justify-center rounded-2xl min-h-[44px] text-xl font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7c1f31] bg-[#7c1f31] text-white hover:bg-[#5a1623] hover:shadow-lg hover:-translate-y-1 h-16 px-10 gap-3"
           >
             Intră în Laboratorul de Adevăr
             <ArrowRight className="w-6 h-6" />
           </button>
           <button 
-            onClick={() => onNavigate('swipegame')}
+            onClick={() => router.push('/swipegame')}
             className="inline-flex items-center justify-center rounded-2xl min-h-[44px] text-xl font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a1a1a] dark:focus-visible:ring-white bg-white dark:bg-transparent border-2 border-[#1a1a1a] dark:border-white text-[#1a1a1a] dark:text-white hover:bg-[#1a1a1a] dark:hover:bg-white hover:text-white dark:hover:text-[#1a1a1a] hover:shadow-lg hover:-translate-y-1 h-16 px-10 gap-3"
           >
             Joacă Swipe Game

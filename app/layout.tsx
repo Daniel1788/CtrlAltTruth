@@ -1,9 +1,8 @@
-
 // Licensed under the GNU AGPL-3.0-only.
-
 import type {Metadata, Viewport} from 'next';
-import './globals.css'; 
+import './globals.css'; // Global styles
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import Navbar from '@/components/layout/Navbar';
 
 export const viewport: Viewport = {
   themeColor: '#7c1f31',
@@ -41,9 +40,12 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           `,
         }} />
       </head>
-      <body suppressHydrationWarning>
+      <body suppressHydrationWarning className="min-h-screen bg-[#e7edeb] dark:bg-[#0a0a0a] font-sans selection:bg-[#7c1f31]/20 transition-colors duration-300">
         <ThemeProvider>
-          {children}
+          <Navbar />
+          <main className="max-w-6xl mx-auto px-6 text-[#1a1a1a] dark:text-white/90">
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>

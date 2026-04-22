@@ -1,7 +1,6 @@
+// Licensed under the GNU AGPL-3.0-only.
 'use client';
 /* eslint-disable react-hooks/set-state-in-effect */
-
-// Licensed under the GNU AGPL-3.0-only.
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
