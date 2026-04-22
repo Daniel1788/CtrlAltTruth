@@ -18,7 +18,7 @@
 
 ## Prezentare Generală
 
-Într-o eră în care inteligența artificială generativă poate crea mii de articole manipulatoare în câteva secunde, gândirea critică este singurul tău firewall. **Ctrl+Alt+Truth** este o platformă educațională interactivă creată pentru a democratiza adevărul și a proteja consumatorii de conținut digital de manipularea media, propaganda și .
+Într-o eră în care inteligența artificială generativă poate crea mii de articole manipulatoare în câteva secunde, gândirea critică este singurul tău firewall. **Ctrl+Alt+Truth** este o platformă educațională interactivă creată pentru a democratiza adevărul și a proteja consumatorii de conținut digital de manipularea media, propagandă și dezinformare.
 
 Misiunea noastră este să antrenăm utilizatorii să detecteze tiparele dezinformării înainte de a fi influențați, combătând răspândirea rapidă a știrilor false în feed-urile algoritmice ale rețelelor sociale.
 
