@@ -99,22 +99,24 @@ export default function TutorialOverlay({ isOpen, onClose, steps }: TutorialOver
                 {steps.map((_, idx) => (
                   <div
                     key={idx}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentStep ? 'w-8 bg-[#7c1f31]' : 'w-2 bg-gray-200 dark:bg-white/10'
-                      }`}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      idx === currentStep ? 'w-8 bg-[#7c1f31]' : 'w-2 bg-gray-200 dark:bg-white/10'
+                    }`}
                   />
                 ))}
               </div>
               <button
                 onClick={handleNext}
                 disabled={isCompleting}
-                className={`inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg min-h-[44px] ${isCompleting
-                  ? 'bg-green-600 shadow-green-600/20'
-                  : 'bg-[#7c1f31] hover:bg-[#5a1623] shadow-[#7c1f31]/20'
-                  }`}
+                className={`inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg min-h-[44px] ${
+                  isCompleting 
+                    ? 'bg-green-600 shadow-green-600/20' 
+                    : 'bg-[#7c1f31] hover:bg-[#5a1623] shadow-[#7c1f31]/20'
+                }`}
               >
                 {currentStep === steps.length - 1 ? (
                   isCompleting ? (
-                    <motion.div
+                    <motion.div 
                       className="flex items-center gap-2"
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}

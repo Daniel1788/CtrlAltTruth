@@ -93,11 +93,11 @@ export default function SwipeGameView({ initialCards }: SwipeGameViewProps) {
         <div className="bg-white dark:bg-[#1a1a1a] p-10 rounded-3xl border border-[#1a1a1a]/10 dark:border-white/10 shadow-xl">
           <div className="text-7xl font-black text-[#7c1f31] dark:text-[#ff4d6d] mb-4">{score} / {cards.length}</div>
           <p className="text-xl text-[#1a1a1a]/80 dark:text-white/80 mb-8">
-            {score >= 8 ? "Excelent! Ai un ochi critic foarte bine antrenat." :
-              score >= 5 ? "Bine! Dar mai ai de lucrat la detectarea manipulării subtile." :
-                "Atenție! Ești foarte vulnerabil la dezinformare. Citește lecțiile noastre!"}
+            {score >= 8 ? "Excelent! Ai un ochi critic foarte bine antrenat." : 
+             score >= 5 ? "Bine! Dar mai ai de lucrat la detectarea manipulării subtile." : 
+             "Atenție! Ești foarte vulnerabil la dezinformare. Citește lecțiile noastre!"}
           </p>
-          <button
+          <button 
             onClick={restartGame}
             className="inline-flex items-center justify-center rounded-xl text-lg font-bold transition-all bg-[#7c1f31] text-white hover:bg-[#5a1623] h-14 px-10"
           >
@@ -139,10 +139,11 @@ export default function SwipeGameView({ initialCards }: SwipeGameViewProps) {
               key="feedback"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className={`absolute inset-0 rounded-3xl shadow-2xl border p-8 flex flex-col justify-center text-center ${feedback.isCorrect
-                  ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800/30'
+              className={`absolute inset-0 rounded-3xl shadow-2xl border p-8 flex flex-col justify-center text-center ${
+                feedback.isCorrect 
+                  ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800/30' 
                   : 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800/30'
-                }`}
+              }`}
             >
               <div className="mb-4 flex justify-center">
                 {feedback.isCorrect ? (
@@ -159,10 +160,10 @@ export default function SwipeGameView({ initialCards }: SwipeGameViewProps) {
                 {feedback.isCorrect ? 'Corect!' : 'Greșit!'}
               </h4>
               <p className="text-lg text-[#1a1a1a]/80 dark:text-white/80 leading-relaxed">
-                {feedback.isCorrect
-                  ? `Corect! ${currentCard.isFake ? 'Acest titlu folosește tehnici de clickbait, este suspect.' : 'Acest titlu este factual și credibil.'}`
+                {feedback.isCorrect 
+                  ? `Corect! ${currentCard.isFake ? 'Acest titlu folosește tehnici de clickbait, este suspect.' : 'Acest titlu este factual și credibil.'}` 
                   : `Greșit! ${currentCard.isFake ? 'Acest titlu era suspect.' : 'Acest titlu era credibil.'}`}
-                <br /><br />
+                <br/><br/>
                 <span className="text-sm opacity-90">{currentCard.explanation}</span>
               </p>
             </motion.div>
@@ -187,7 +188,7 @@ export default function SwipeGameView({ initialCards }: SwipeGameViewProps) {
         </button>
       </div>
       <p className="text-[#1a1a1a]/50 dark:text-white/50 text-sm mt-6 text-center">
-        Apasă SUSPECT dacă titlul folosește manipulare emoțională sau clickbait.<br />
+        Apasă SUSPECT dacă titlul folosește manipulare emoțională sau clickbait.<br/>
         Apasă CREDIBIL dacă este o știre factuală, neutră.
       </p>
     </div>

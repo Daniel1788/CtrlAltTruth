@@ -1,7 +1,9 @@
 import { supabase } from '@/lib/supabase';
 import { LESSONS, TOPICS } from '@/lib/data';
+// For mapping string names to icons if needed, we might have to map them in the UI. 
+// Or we can return the local data directly for now if DB fails.
 
-
+// The local Swipe Game data was hardcoded in SwipeGameView, but we can have it fallback here.
 import { AlertTriangle, Fingerprint, MessageSquareWarning, Video, Filter, Search, ShieldAlert, BookOpen } from 'lucide-react';
 
 const HEADLINES_FALLBACK = [
@@ -45,7 +47,7 @@ export async function getLessons() {
       .order('id');
 
     if (error) throw error;
-
+    
     if (!lessons || lessons.length === 0) {
       return LESSONS;
     }

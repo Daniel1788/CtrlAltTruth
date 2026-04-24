@@ -1,5 +1,5 @@
 {
-  "name": "Remix: Ctrl+Alt+Truth",
-  "description": "Aplicație educațională pentru detectarea manipulării media.",
-  "requestFramePermissions": []
+	"name": "Ctrl+Alt+Truth",
+	"description": "Aplicație educațională pentru detectarea manipulării media.",
+	"requestFramePermissions": []
 }

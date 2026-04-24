@@ -7,6 +7,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { ShieldAlert, BookOpen, Gamepad2, Home, FileText, Menu, X, Sun, Moon, User, LogIn } from 'lucide-react';
 import { useTheme } from '@/components/providers/ThemeProvider';
 import { useAuth } from '@/components/providers/AuthProvider';
+import { AccessibilityMenu } from '@/components/AccessibilityMenu';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -57,6 +58,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex gap-2 items-center">
+            <AccessibilityMenu />
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-white dark:bg-[#1a1a1a] border border-[#1a1a1a]/10 dark:border-white/10 text-[#1a1a1a] dark:text-white hover:bg-[#1a1a1a]/5 dark:hover:bg-white/5 transition-all shadow-sm"
@@ -96,6 +98,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <div className="flex md:hidden items-center gap-2">
+          <AccessibilityMenu />
           {!isLoading && user && (
             <button
                onClick={() => router.push('/profile')}

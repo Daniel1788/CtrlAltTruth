@@ -49,11 +49,11 @@ export default async function LessonsPage() {
               <span className="text-sm font-bold text-[#7c1f31] dark:text-[#ff4d6d] mb-2 uppercase tracking-wider">{lesson.level}</span>
               <h3 className="text-2xl font-bold text-[#1a1a1a] dark:text-white mb-4">{lesson.title}</h3>
               <div className="text-[#1a1a1a]/80 dark:text-white/80 text-lg line-clamp-3 mb-6">
-                {/* As the content might be JSX from local or HTML from DB, we shouldn't render the whole JSX inside a link tag block or it could be invalid HTML. Best to show an excerpt or no description.
+                 {/* As the content might be JSX from local or HTML from DB, we shouldn't render the whole JSX inside a link tag block or it could be invalid HTML. Best to show an excerpt or no description.
                      Since local data content is a React Node, line-clamp might break it. 
                      We can just remove the excerpt, or conditionally render. Let's just remove the excerpt for simplicity, or keep a short description if we had one.
                  */}
-                Învață cum să te protejezi de manipulare online și cum să recunoști tehnicile toxice.
+                 Învață cum să te protejezi de manipulare online și cum să recunoști tehnicile toxice.
               </div>
               <div className="mt-auto pt-4 text-[#7c1f31] dark:text-[#ff4d6d] font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                 Începe Lecția <ArrowRight className="w-5 h-5" />

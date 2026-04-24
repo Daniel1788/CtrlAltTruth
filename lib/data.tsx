@@ -21,10 +21,10 @@ export const LESSONS = [
     content: (
       <>
         <p>Limbajul polarizant este principala armă a dezinformării moderne. Scopul său nu este să informeze, ci să împartă lumea în două tabere ireconciliabile: &quot;Noi&quot; (cei buni, victimele) și &quot;Ei&quot; (cei răi, asupritorii).</p>
-
+        
         <h3>Economia Indignării (Outrage Economy)</h3>
         <p>În mediul digital, atenția ta este moneda de schimb. Platformele și creatorii de conținut au descoperit că <strong>furia</strong> este cea mai &quot;lipicioasă&quot; emoție. Un titlu care te revoltă are șanse mult mai mari să fie distribuit decât unul echilibrat. Această &quot;economie a indignării&quot; prioritizează viralitatea în detrimentul adevărului.</p>
-
+        
         <h3>Mecanismul Biologic: Deturnarea Amigdalei</h3>
         <p>Când simțim furie sau frică intensă, creierul nostru intră în modul &quot;luptă sau fugi&quot;. Amigdala preia controlul, iar <strong>cortexul prefrontal</strong> (centrul logicii și al analizei) este temporar dezactivat. Manipulatorii profită de această fereastră biologică pentru a insera idei false fără a fi filtrate de rațiune.</p>
 
@@ -155,7 +155,7 @@ export const LESSONS = [
     content: (
       <>
         <p>Modelele de limbaj (LLM) pot genera texte perfecte gramatical, dar ele nu &quot;înțeleg&quot; realitatea; ele doar prezic următorul cuvânt. Această natură statistică lasă urme matematice specifice.</p>
-
+        
         <h3>Cei doi piloni ai detecției</h3>
         <ul>
           <li>
@@ -168,7 +168,7 @@ export const LESSONS = [
 
         <h3>Problema Halucinațiilor</h3>
         <p>Deoarece AI-ul este un motor de probabilități, el poate genera fapte false cu o încredere totală. Aceasta se numește <strong>halucinație</strong>. Un text AI poate cita studii care nu există sau evenimente istorice inventate, păstrând un ton academic și autoritar.</p>
-
+        
         <p className="text-sm bg-white/50 dark:bg-white/5 p-3 rounded-lg border border-[#7c1f31]/10 dark:border-white/10">
           <strong>Sfat:</strong> Dacă un text pare &quot;prea perfect&quot; și lipsit de orice eroare sau variație stilistică, trece-l prin filtrul de burstiness.
         </p>
@@ -222,15 +222,15 @@ export const LESSONS = [
     content: (
       <>
         <p>Tehnologia a ajuns în punctul în care &quot;a vedea nu mai înseamnă a crede&quot;. Manipularea vizuală variază de la editări grosolane până la simulări digitale perfecte.</p>
-
+        
         <h3>Spectrul Falsificării</h3>
         <ul>
           <li>
             <strong>Deepfakes:</strong> Folosesc rețele neuronale (GANs) pentru a mapa trăsăturile unei persoane pe corpul alteia sau pentru a clona vocea. Sunt greu de realizat perfect, dar tehnologia avansează rapid.
           </li>
           <li>
-            <strong>Cheapfakes (sau Shallowfakes):</strong> Manipulări care nu folosesc AI, ci doar unelte de editare clasice.
-            <br /><span className="text-sm opacity-70">Exemplu: Încetinirea unui video cu un politician pentru a-l face să pară sub influența alcoolului sau confuz.</span>
+            <strong>Cheapfakes (sau Shallowfakes):</strong> Manipulări care nu folosesc AI, ci doar unelte de editare clasice. 
+            <br/><span className="text-sm opacity-70">Exemplu: Încetinirea unui video cu un politician pentru a-l face să pară sub influența alcoolului sau confuz.</span>
           </li>
           <li>
             <strong>Recontextualizarea:</strong> Folosirea unei imagini reale, dar cu o descriere falsă. O poză de la un protest din 2012 este prezentată ca fiind de ieri, dintr-o altă țară.
@@ -289,7 +289,7 @@ export const LESSONS = [
     content: (
       <>
         <p>Algoritmii rețelelor sociale nu sunt arbitri ai adevărului; ei sunt agenți de vânzări ai atenției tale. Scopul lor unic este <strong>Watch Time</strong> (timpul petrecut pe platformă).</p>
-
+        
         <h3>Anatomia Bulei de Ecou</h3>
         <ul>
           <li>
@@ -354,7 +354,7 @@ export const LESSONS = [
     content: (
       <>
         <p>În era dezinformării, nu mai este suficient să citești un articol. Trebuie să devii un detectiv al informației folosind tehnici de verificare rapidă.</p>
-
+        
         <h3>Metoda SIFT (Stop, Investigate, Find, Trace)</h3>
         <ol className="space-y-4 my-4">
           <li>

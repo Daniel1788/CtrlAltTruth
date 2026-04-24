@@ -1,5 +1,3 @@
-// Licensed under the GNU AGPL-3.0-only.
-
 import React from 'react';
 import AnalyzerView from '@/components/views/AnalyzerView';
 import { getTopics } from '@/lib/fetchData';
