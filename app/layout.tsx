@@ -5,6 +5,10 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { AuthProvider } from '@/components/providers/AuthProvider';
 import Navbar from '@/components/layout/Navbar';
 import { Toaster } from 'react-hot-toast';
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const viewport: Viewport = {
   themeColor: '#7c1f31',
@@ -20,16 +24,16 @@ export const metadata: Metadata = {
     title: 'Ctrl+Alt+Truth',
   },
   icons: {
-    icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237c1f31' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Cpath d='M12 8v4'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E",
-    apple: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237c1f31' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Cpath d='M12 8v4'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E",
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   }
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="ro" suppressHydrationWarning>
+    <html lang="ro" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
       <head>
-        <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237c1f31' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Cpath d='M12 8v4'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E" />
+        <link rel="apple-touch-icon" href="/icon.svg" />
         <script dangerouslySetInnerHTML={{
           __html: `
             try {
@@ -38,6 +42,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               } else {
                 document.documentElement.classList.remove('dark')
               }
+              
+              /* Accessibility Hydration */
+              const a11y = JSON.parse(localStorage.getItem('a11y-prefs') || '{}');
+              if (a11y.highContrast) document.documentElement.classList.add('theme-high-contrast');
+              if (a11y.reduceMotion) document.documentElement.classList.add('reduced-motion');
+              if (a11y.dyslexiaFont) document.documentElement.classList.add('dyslexia-font');
+              if (a11y.fontSize) document.documentElement.style.fontSize = a11y.fontSize + 'px';
             } catch (_) {}
           `,
         }} />
